@@ -16,6 +16,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)SampeRobotsCode\RegPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SampeRobotsCode\RobotsCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SampeRobotsCode\WelcomePage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HelpPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)SampeRobotsCode\" />
