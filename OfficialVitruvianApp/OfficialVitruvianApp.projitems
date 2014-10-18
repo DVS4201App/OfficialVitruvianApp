@@ -10,5 +10,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SampeRobotsCode\App.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SampeRobotsCode\InterfacePage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SampeRobotsCode\MatchListPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SampeRobotsCode\RegPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SampeRobotsCode\RobotsCell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SampeRobotsCode\WelcomePage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)SampeRobotsCode\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)SampeRobotsCode\Robots.projitems" />
+    <None Include="$(MSBuildThisFileDirectory)SampeRobotsCode\Robots.shproj" />
   </ItemGroup>
 </Project>
