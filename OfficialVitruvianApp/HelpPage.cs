@@ -14,7 +14,7 @@ namespace OfficialVitruvianApp{
 					Root = new TableRoot{
 						new TableSection{
 							new TextCell {
-								Text = "Welcome",
+								//Text = "Welcome",
 								Detail = "Welcome to Team 4201's Scouting App. To start, please register an account on the main login page and login to view data. Be aware that edits to robot data are restricted to specific accounts. Please contact one of the App developers for access."
 							}
 					}
