@@ -59,6 +59,7 @@ namespace OfficialVitruvianApp
 			teamStack.Children.Add (cell4);
 			teamStack.Children.Add (cell5);
 
+
 			/*Grid teamGrid = new Grid {
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				RowDefinitions = {
