@@ -1,12 +1,17 @@
-using System;
-using Xamarin.Forms;
-using Parse;
+using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Xamarin.Forms;
+using System;
+using Parse;
+
 
 namespace OfficialVitruvianApp
 {
 	public class CompetitionSelectPage : ContentPage
 	{
+		StackLayout matchStack = new StackLayout ();
+
 		public CompetitionSelectPage ()
 		{
 			//Title
@@ -44,28 +49,10 @@ namespace OfficialVitruvianApp
 				//This button should change the table of matches to show only matches for this competition.
 			};
 
-
-			//A table with a bunch of other matches that changes based on the selected competition.
-			StackLayout matchStack = new StackLayout ();
-
 			ScrollView matchList = new ScrollView ();
 			matchList.Content = matchStack;
-			matchList.HeightRequest = 150;
-			MatchListCell cell1 = new MatchListCell ();
-			cell1.matchName.Text = "1";
-			MatchListCell cell2 = new MatchListCell ();
-			cell2.matchName.Text = "2";
-			MatchListCell cell3 = new MatchListCell ();
-			cell3.matchName.Text = "3";
-			MatchListCell cell4 = new MatchListCell ();
-			cell4.matchName.Text = "4";
-			MatchListCell cell5 = new MatchListCell ();
-			cell5.matchName.Text = "5";
-			matchStack.Children.Add (cell1);
-			matchStack.Children.Add (cell2);
-			matchStack.Children.Add (cell3);
-			matchStack.Children.Add (cell4);
-			matchStack.Children.Add (cell5);
+
+			UpdateMatchList();
 
 			/*Grid teamGrid = new Grid {
 				HorizontalOptions = LayoutOptions.FillAndExpand,
@@ -94,6 +81,8 @@ namespace OfficialVitruvianApp
 				//return new NavigationPage (new MainMenuPage ());
 			};
 
+			BackgroundColor = Color.Green;
+
 			//Page Layout
 			this.Content = new StackLayout {
 				HorizontalOptions = LayoutOptions.CenterAndExpand,
@@ -109,6 +98,49 @@ namespace OfficialVitruvianApp
 				}
 			};
 		}
+
+
+
+		void SetupMatchList(){
+
+		}
+		async void AddNewMatch () {
+			ParseQuery<ParseObject> query = ParseObject.GetQuery("MatchData");
+			int matchCount = await query.CountAsync();
+			matchCount++;
+			ParseObject newMatch = new ParseObject("MatchData");
+			newMatch["matchNumber"] = matchCount;
+			await newMatch.SaveAsync();
+			await UpdateMatchList ();
+		}
+
+		async Task UpdateMatchList(){
+			ParseQuery<ParseObject> query = ParseObject.GetQuery("MatchData");
+			var allMatches = await query.FindAsync();
+			matchStack.Children.Clear();
+			foreach (ParseObject obj in allMatches) {
+				await obj.FetchAsync ();
+				MatchListCell cell = new MatchListCell ();
+				cell.matchName.Text = "Match " + obj["matchNumber"];
+				matchStack.Children.Add (cell);
+			}
+		}
+		/*async Task UpdateMatches() {
+			busyIcon.IsVisible = true;
+			busyIcon.IsRunning = true;
+			ParseQuery<ParseObject> query = ParseObject.GetQuery("RobotMatches");
+			var allMatches = await query.FindAsync();
+			matchData.Clear ();
+			foreach (ParseObject obj in allMatches) {
+				await obj.FetchAsync ();
+				matchData.Add(new RobotMatch(obj.Get<int>("matchNumber"), obj));
+			}
+			busyIcon.IsVisible = false;
+			busyIcon.IsRunning = false;
+			//listView.ItemsSource = matchData;
+		}*/
+
+
 	}
 }
 
