@@ -21,7 +21,7 @@ namespace OfficialVitruvianApp
 			oneBtn.TextColor = Color.Green;
 			oneBtn.BackgroundColor = Color.Black;
 			oneBtn.Clicked += (object sender, EventArgs e) => {
-				return new NavigationPage (new CompetitionOnePage ());
+				//return new NavigationPage (new CompetitionOnePage ());
 			};
 
 			//Competition Two Button
@@ -30,7 +30,7 @@ namespace OfficialVitruvianApp
 			twoBtn.TextColor = Color.Green;
 			twoBtn.BackgroundColor = Color.Black;
 			twoBtn.Clicked += (object sender, EventArgs e) => {
-				return new NavigationPage (new CompetitionTwoPage ());
+				//return new NavigationPage (new CompetitionTwoPage ());
 			};
 
 			//Competition Three Button
@@ -39,7 +39,7 @@ namespace OfficialVitruvianApp
 			threeBtn.TextColor = Color.Green;
 			threeBtn.BackgroundColor = Color.Black;
 			threeBtn.Clicked += (object sender, EventArgs e) => {
-				return new NavigationPage (new CompetitionThreePage ());
+				//return new NavigationPage (new CompetitionThreePage ());
 			};
 
 			//A table with a bunch of other teams that changes based on the selected competition.
@@ -50,7 +50,7 @@ namespace OfficialVitruvianApp
 			backBtn.TextColor = Color.Green;
 			backBtn.BackgroundColor = Color.Black;
 			backBtn.Clicked += (object sender, EventArgs e) => {
-				return new NavigationPage (new MainMenuPage ());
+				//return new NavigationPage (new MainMenuPage ());
 			};
 
 		}

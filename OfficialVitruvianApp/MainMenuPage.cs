@@ -21,7 +21,7 @@ namespace OfficialVitruvianApp
 			infoBtn.TextColor = Color.Green;
 			infoBtn.BackgroundColor = Color.Black;
 			infoBtn.Clicked += (object sender, EventArgs e) => {
-				return new NavigationPage (new RobotInfoPage ());
+				//return new NavigationPage (new RobotInfoPage ());
 			};
 
 			//Scouting Tab Navigation
@@ -30,7 +30,7 @@ namespace OfficialVitruvianApp
 			scoutingBtn.TextColor = Color.Green;
 			scoutingBtn.BackgroundColor = Color.Black;
 			scoutingBtn.Clicked += (object sender, EventArgs e) => {
-				return new NavigationPage (new CompetitionSelectPage ());
+				//return new NavigationPage (new CompetitionSelectPage ());
 			};
 
 			//Raw Data Tab Navigation
@@ -39,7 +39,7 @@ namespace OfficialVitruvianApp
 			dataBtn.TextColor = Color.Green;
 			dataBtn.BackgroundColor = Color.Black;
 			dataBtn.Clicked += (object sender, EventArgs e) => {
-				return new NavigationPage (new RawDataPage ());
+				//return new NavigationPage (new RawDataPage ());
 			};
 
 			//Back Button Navigation
@@ -48,7 +48,7 @@ namespace OfficialVitruvianApp
 			backBtn.TextColor = Color.Green;
 			backBtn.BackgroundColor = Color.Black;
 			backBtn.Clicked += (object sender, EventArgs e) => {
-				return new NavigationPage (new LoginPage ());
+				//return new NavigationPage (new LoginPage ());
 			};
 
 			//Admin Options Tab Navigation
@@ -57,7 +57,7 @@ namespace OfficialVitruvianApp
 			adminBtn.TextColor = Color.Green;
 			adminBtn.BackgroundColor = Color.Black;
 			adminBtn.Clicked += (object sender, EventArgs e) => {
-				return new NavigationPage (new AdminOptionsPage ());
+				//return new NavigationPage (new AdminOptionsPage ());
 			};
 
 			//Page Layout

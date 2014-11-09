@@ -15,7 +15,7 @@ namespace OfficialVitruvianApp
 			vitBtn.TextColor = Color.Green;
 			vitBtn.BackgroundColor = Color.Black;
 			vitBtn.Clicked += (object sender, EventArgs e) => {
-				return new NavigationPage (new OurRobotPage ());
+				//return new NavigationPage (new OurRobotPage ());
 			};
 
 			//A button to toggle between looking at teams and adding data about teams
@@ -30,7 +30,7 @@ namespace OfficialVitruvianApp
 			backBtn.TextColor = Color.Green;
 			backBtn.BackgroundColor = Color.Black;
 			backBtn.Clicked += (object sender, EventArgs e) => {
-				return new NavigationPage (new MainMenuPage ());
+				//return new NavigationPage (new MainMenuPage ());
 			};
 		}
 	}
