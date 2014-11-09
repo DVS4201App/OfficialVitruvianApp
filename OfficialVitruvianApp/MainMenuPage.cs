@@ -60,6 +60,7 @@ namespace OfficialVitruvianApp
 				Navigation.PushModalAsync(new LoginPage ());
 			};
 
+
 			//Page Layout
 			this.Content = new StackLayout (){
 				Padding = 20, Spacing = 20, //new Thickness (5, 10, 5, 10); Use this to control padding or spacing on the Left, Right, Top, Bottom
