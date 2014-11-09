@@ -79,7 +79,7 @@ namespace Robots
 			Button addMatchBtn = new Button ();
 			addMatchBtn.Text = "New Match";
 			addMatchBtn.TextColor = Color.White;
-			addMatchBtn.BackgroundColor = Color.Pink;
+			addMatchBtn.BackgroundColor = Color.Fuschia;
 			addMatchBtn.Clicked += (object sender, EventArgs e) => {
 				busyIcon.IsVisible = true;
 				busyIcon.IsRunning = true;

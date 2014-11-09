@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Xamarin.Forms;
 using Parse;
 using System.Threading.Tasks;
@@ -56,7 +56,11 @@ namespace OfficialVitruvianApp
 
 			backBtn.Clicked += (object sender, EventArgs e) => {
 				//return new NavigationPage (new MainMenuPage ());
+<<<<<<< Upstream, based on origin/master
 			};
+=======
+			};
+>>>>>>> c415c67 test
 
 		}
 	}

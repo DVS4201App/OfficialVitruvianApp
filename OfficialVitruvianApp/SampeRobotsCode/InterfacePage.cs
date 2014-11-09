@@ -82,7 +82,7 @@ namespace Robots
 		async Task PostIntData (string key, int dataInput) {
 			data[key] = dataInput;
 			await data.SaveAsync();
-			await DisplayAlert ("Data Inputed", "Posted: " + dataInput, "OK");
+			await DisplayAlert ("Data Inputed", "Posted: " + dataInput.ToString (), "OK");
 			UpdateDisplay ();
 		}
 

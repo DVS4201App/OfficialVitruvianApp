@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Xamarin.Forms;
 using Parse;
 using System.Threading.Tasks;
@@ -29,9 +29,15 @@ namespace OfficialVitruvianApp
 			backBtn.Text = "Back";
 			backBtn.TextColor = Color.Green;
 			backBtn.BackgroundColor = Color.Black;
+<<<<<<< Upstream, based on origin/master
 			//backBtn.Clicked += (object sender, EventArgs e) => {
 			//	return new NavigationPage (new MainMenuPage ());
 			//};
+=======
+			backBtn.Clicked += (object sender, EventArgs e) => {
+				//return new NavigationPage (new MainMenuPage ());
+			};
+>>>>>>> c415c67 test
 		}
 	}
 }

@@ -62,14 +62,14 @@ namespace OfficialVitruvianApp
 
 			Button helpPage = new Button { Text = "Help" };
 			helpPage.BackgroundColor = Color.Red;
-			helpPage.Clicked += helpPageBtn;
+			helpPage.Clicked +=HelpPageBtn;
 
 			//BackgroundImage = "Background_Logo.png";
 
 			this.Content = new StackLayout {
 				HorizontalOptions = LayoutOptions.CenterAndExpand,
 				VerticalOptions = LayoutOptions.CenterAndExpand,
-				Padding = 1, Spacing = 30,
+				Padding = 1, Spacing = 15,
 
 				Children = {
 					usernameLabel,
@@ -77,7 +77,8 @@ namespace OfficialVitruvianApp
 					passwordLabel,
 					password,
 					login,
-					createAccount
+					createAccount,
+					helpPage
 				}
 			};
 		}

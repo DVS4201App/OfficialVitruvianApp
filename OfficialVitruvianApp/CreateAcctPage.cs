@@ -22,6 +22,7 @@ namespace OfficialVitruvianApp
 
 			//Password Entry
 			Entry passwordEntry = new Entry ();
+			passwordEntry.IsPassword = true;
 			passwordEntry.BackgroundColor = Color.Green;
 			passwordEntry.Placeholder = "Password";
 
@@ -68,7 +69,9 @@ namespace OfficialVitruvianApp
 			try
 			{
 				await user.SignUpAsync ();
+				await DisplayAlert("Signup Successful", "Account Created", "Ok");
 				Console.WriteLine ("Account Creation Success");
+
 				// Login was successful.
 				//TODO: Open up a new page
 				//await Navigation.PushModalAsync (new LoginPage () );
