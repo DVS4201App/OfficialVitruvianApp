@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Xamarin.Forms;
 using Parse;
 using System.Threading.Tasks;
@@ -32,7 +32,7 @@ namespace OfficialVitruvianApp
 			scoutingBtn.Clicked += (object sender, EventArgs e) => {
 				Navigation.PushModalAsync (new CompetitionSelectPage ());
 			};
-				
+
 			//Raw Data Tab Navigation
 			Button dataBtn = new Button ();
 			dataBtn.Text = "Raw Data";
@@ -44,7 +44,7 @@ namespace OfficialVitruvianApp
 				
 			//Admin Options Tab Navigation
 			Button adminBtn = new Button ();
-			adminBtn.Text = "Admin Hub";
+			adminBtn.Text = "Admin Options";
 			adminBtn.TextColor = Color.Green;
 			adminBtn.BackgroundColor = Color.Black;
 			adminBtn.Clicked += (object sender, EventArgs e) => {
@@ -53,24 +53,25 @@ namespace OfficialVitruvianApp
 
 			//Back Button Navigation
 			Button backBtn = new Button ();
-			backBtn.Text = "Back";
+			backBtn.Text = "Logout";
 			backBtn.TextColor = Color.Green;
 			backBtn.BackgroundColor = Color.Black;
 			backBtn.Clicked += (object sender, EventArgs e) => {
-				Navigation.PopModalAsync();
+				Navigation.PushModalAsync(new LoginPage ());
 			};
-				
-			//Page Layout
-			StackLayout stack = new StackLayout ();
-			stack.Padding = 20; //new Thickness (5, 10, 5, 10); Use this to control padding or spacing on the Left, Right, Top, Bottom
-			stack.Spacing = 20;
-			stack.Children.Add (infoBtn);
-			stack.Children.Add (scoutingBtn);
-			stack.Children.Add (dataBtn);
-			stack.Children.Add (adminBtn);
-			stack.Children.Add (backBtn);
-			Content = stack;
 
+			//Page Layout
+			this.Content = new StackLayout (){
+				Padding = 20, Spacing = 20, //new Thickness (5, 10, 5, 10); Use this to control padding or spacing on the Left, Right, Top, Bottom
+
+				Children = {
+					infoBtn,
+					scoutingBtn,
+					dataBtn,
+					adminBtn,
+					backBtn
+				}
+			};
 		}
 	}
 }
