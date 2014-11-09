@@ -23,7 +23,9 @@ namespace OfficialVitruvianApp
 			catch {
 				teamNumber.Placeholder = "Enter Team Number";
 			}
-		
+
+			teamNumber.Keyboard = Keyboard.Numeric;
+
 			Entry teamName = new Entry ();
 			try {if (teamData ["teamName"] != null) {
 				teamName.Text = teamData ["teamName"].ToString();
@@ -45,7 +47,7 @@ namespace OfficialVitruvianApp
 
 			Button updateBtn = new Button(){Text = "Update"};
 			updateBtn.Clicked += (object sender, EventArgs e) => {
-				data ["teamNumber"] = teamNumber.Text;
+				data ["teamNumber"] = int.Parse(teamNumber.Text);
 				data ["teamName"] = teamName.Text;
 				data ["teamType"] = teamType.Text;
 				SaveData ();
@@ -70,7 +72,7 @@ namespace OfficialVitruvianApp
 		async void SaveData(){
 			Console.WriteLine ("Saving...");
 			await data.SaveAsync ();
-			Console.WriteLine ("DOne Saving");
+			Console.WriteLine ("Done Saving");
 			Navigation.PopModalAsync ();
 		}
 	}

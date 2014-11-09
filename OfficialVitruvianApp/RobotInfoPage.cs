@@ -112,6 +112,11 @@ namespace OfficialVitruvianApp
 				TeamListCell cell = new TeamListCell ();
 				cell.teamName.Text = "Team " + obj["teamNumber"];
 				teamStack.Children.Add (cell);
+				TapGestureRecognizer tap = new TapGestureRecognizer ();
+				tap.Tapped += (object sender, EventArgs e) => {
+					Navigation.PushModalAsync (new AddTeamPage (obj));
+				};
+				cell.GestureRecognizers.Add (tap);
 			}
 		}
 		/*async Task UpdateMatches() {
