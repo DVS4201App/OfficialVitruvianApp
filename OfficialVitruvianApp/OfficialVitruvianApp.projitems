@@ -17,6 +17,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)SampeRobotsCode\RobotsCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SampeRobotsCode\WelcomePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HelpPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AdminOptionsPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CompetitionSelectPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CreateAcctPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MainMenuPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RawDataPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RobotInfoPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)SampeRobotsCode\" />

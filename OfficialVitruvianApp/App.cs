@@ -1,5 +1,6 @@
 ﻿using System;
 using Xamarin.Forms;
+using Parse; 
 
 namespace OfficialVitruvianApp
 {
@@ -7,13 +8,8 @@ namespace OfficialVitruvianApp
 	{
 		public static Page GetMainPage ()
 		{	
-			return new ContentPage { 
-				Content = new Label {
-					Text = "Hello, Forms!",
-					VerticalOptions = LayoutOptions.CenterAndExpand,
-					HorizontalOptions = LayoutOptions.CenterAndExpand,
-				},
-			};
+			ParseClient.Initialize("df6eih4fo22hNaYhb5IB6jo5AUqE5XykXkezyAtk", "5mk9AEUsOfW8bjtNUu6fmxxvXpOgoHBifY6k8uBz");
+			return new NavigationPage (new CreateAcctPage ());
 		}
 	}
 }
