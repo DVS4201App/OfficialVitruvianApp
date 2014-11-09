@@ -9,7 +9,6 @@ namespace OfficialVitruvianApp
 	{
 		public CreateAcctPage ()
 		{
-
 			//Title
 			Label acctLabel = new Label();
 			acctLabel.TextColor = Color.Green;
@@ -78,7 +77,7 @@ namespace OfficialVitruvianApp
 			{
 				// The login failed. Check the error to see why.
 				Console.WriteLine("Signup error: " + e.Message);
-				await DisplayAlert ("Error", e.Message, "OK", "Cancel");
+				DisplayAlert ("Error", e.Message, "OK", "Cancel");
 			}
 
 		}

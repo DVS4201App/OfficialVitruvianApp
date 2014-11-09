@@ -23,8 +23,7 @@ namespace OfficialVitruvianApp
 			infoBtn.Clicked += (object sender, EventArgs e) => {
 				//return new NavigationPage (new RobotInfoPage ());
 			};
-
-			//Scouting Tab Navigation
+		//Scouting Tab Navigation
 			Button scoutingBtn = new Button ();
 			scoutingBtn.Text = "Match Scouting";
 			scoutingBtn.TextColor = Color.Green;
@@ -32,6 +31,7 @@ namespace OfficialVitruvianApp
 			scoutingBtn.Clicked += (object sender, EventArgs e) => {
 				//return new NavigationPage (new CompetitionSelectPage ());
 			};
+
 
 			//Raw Data Tab Navigation
 			Button dataBtn = new Button ();
@@ -41,6 +41,7 @@ namespace OfficialVitruvianApp
 			dataBtn.Clicked += (object sender, EventArgs e) => {
 				//return new NavigationPage (new RawDataPage ());
 			};
+
 
 			//Back Button Navigation
 			Button backBtn = new Button ();

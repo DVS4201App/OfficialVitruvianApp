@@ -9,7 +9,7 @@ namespace OfficialVitruvianApp
 		public static Page GetMainPage ()
 		{	
 			ParseClient.Initialize("df6eih4fo22hNaYhb5IB6jo5AUqE5XykXkezyAtk", "5mk9AEUsOfW8bjtNUu6fmxxvXpOgoHBifY6k8uBz");
-			return new NavigationPage (new CreateAcctPage ());
+			return new NavigationPage (new CreateAcctPage());
 		}
 	}
 }

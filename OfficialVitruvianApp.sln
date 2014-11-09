@@ -53,6 +53,6 @@ Global
 		{A4EF0845-55BA-483B-AAA1-3F45BCC9C802}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = iOS\OfficialVitruvianApp.iOS.csproj
+		StartupItem = Android\OfficialVitruvianApp.Android.csproj
 	EndGlobalSection
 EndGlobal
