@@ -10,10 +10,10 @@ namespace OfficialVitruvianApp
 		public AdminOptionsPage ()
 		{
 			//Title
-			Label optionLabel = new Label();
-			optionLabel.HorizontalOptions = LayoutOptions.Center;
-			optionLabel.Text = "Account Creation Page";
-
+			Label title = new Label {
+				Text = "Admin Options",
+				HorizontalOptions = LayoutOptions.Center
+			};
 			//Edit Current Competitions
 
 			//Add/remove teams from competitions
@@ -26,6 +26,22 @@ namespace OfficialVitruvianApp
 
 			//Revise someone's account info
 
+			//Back Button
+			Button backBtn = new Button {
+				Text = "Back",
+				TextColor = Color.Green,
+				BackgroundColor = Color.Black
+			};
+			backBtn.Clicked += (object sender, EventArgs e) => {
+					Navigation.PushModalAsync(new MainMenuPage());
+			};
+
+			this.Content = new StackLayout {
+				Children = {
+					title,
+					backBtn
+				}
+			};
 		}
 	}
 }

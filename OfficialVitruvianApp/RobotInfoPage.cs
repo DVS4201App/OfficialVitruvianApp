@@ -36,6 +36,12 @@ namespace OfficialVitruvianApp
 			backBtn.Clicked += (object sender, EventArgs e) => {
 			//	Navigation.PushModalAsync (new MainMenuPage ());
 			};
+<<<<<<< Upstream, based on origin/master
+=======
+			backBtn.Clicked += (object sender, EventArgs e) => {
+				Navigation.PushModalAsync(new MainMenuPage());
+			};
+>>>>>>> 03f549e Small fixes
 		}
 	}
 }
