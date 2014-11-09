@@ -21,7 +21,7 @@ namespace OfficialVitruvianApp
 			oneBtn.TextColor = Color.Green;
 			oneBtn.BackgroundColor = Color.Black;
 			oneBtn.Clicked += (object sender, EventArgs e) => {
-				//return new NavigationPage (new CompetitionOnePage ());
+				//This button should change the table of teams to show only teams attending this competition.
 			};
 
 
@@ -31,7 +31,7 @@ namespace OfficialVitruvianApp
 			twoBtn.TextColor = Color.Green;
 			twoBtn.BackgroundColor = Color.Black;
 			twoBtn.Clicked += (object sender, EventArgs e) => {
-				//return new NavigationPage (new CompetitionTwoPage ());
+				//This button should change the table of teams to show only teams attending this competition.
 			};
 
 
@@ -40,13 +40,13 @@ namespace OfficialVitruvianApp
 			threeBtn.Text = "Name Coming Soon";
 			threeBtn.TextColor = Color.Green;
 			threeBtn.BackgroundColor = Color.Black;
-
 			threeBtn.Clicked += (object sender, EventArgs e) => {
-				//return new NavigationPage (new CompetitionThreePage ());
+				//This button should change the table of teams to show only teams attending this competition.
 			};
 
 
 			//A table with a bunch of other teams that changes based on the selected competition.
+			//Code here
 
 			//Back Button Navigation. Could be in the corner or on the bottom.
 			Button backBtn = new Button ();
@@ -58,9 +58,8 @@ namespace OfficialVitruvianApp
 				//return new NavigationPage (new MainMenuPage ());
 <<<<<<< Upstream, based on origin/master
 			};
-=======
 			};
->>>>>>> c415c67 test
+>>>>>>> 22928bf Main Menu Edits
 
 		}
 	}

@@ -14,15 +14,18 @@ namespace OfficialVitruvianApp
 			vitBtn.Text = "Robot Information";
 			vitBtn.TextColor = Color.Green;
 			vitBtn.BackgroundColor = Color.Black;
-			//vitBtn.Clicked += (object sender, EventArgs e) => {
-			//	return new NavigationPage (new OurRobotPage ());
-			//};
+			vitBtn.Clicked += (object sender, EventArgs e) => {
+			//	Navigation.PushModalAsync (new OurRobotPage ());
+			};
 
 			//A button to toggle between looking at teams and adding data about teams
 			//Code here
+
 			//A button to look for teams based on categories
+			//Code here
 
 			//A table with a bunch of other teams
+			//Code here
 
 			//Back Button
 			Button backBtn = new Button ();
@@ -35,9 +38,9 @@ namespace OfficialVitruvianApp
 			//};
 =======
 			backBtn.Clicked += (object sender, EventArgs e) => {
-				//return new NavigationPage (new MainMenuPage ());
+			//	Navigation.PushModalAsync (new MainMenuPage ());
 			};
->>>>>>> c415c67 test
+>>>>>>> 22928bf Main Menu Edits
 		}
 	}
 }

@@ -13,7 +13,13 @@ namespace OfficialVitruvianApp
 			Label acctLabel = new Label();
 			acctLabel.TextColor = Color.Green;
 			acctLabel.HorizontalOptions = LayoutOptions.Center;
-			acctLabel.Text = "Account Creation Page";
+			acctLabel.Text = "Create Account";
+
+			//Title
+			Label subLabel = new Label();
+			subLabel.TextColor = Color.Green;
+			subLabel.HorizontalOptions = LayoutOptions.Center;
+			subLabel.Text = "Enter your desired info below.";
 
 			//User Entry
 			Entry userEntry = new Entry ();
@@ -73,7 +79,6 @@ namespace OfficialVitruvianApp
 				Console.WriteLine ("Account Creation Success");
 
 				// Login was successful.
-				//TODO: Open up a new page
 				//await Navigation.PushModalAsync (new LoginPage () );
 			}
 			catch (Exception e)
