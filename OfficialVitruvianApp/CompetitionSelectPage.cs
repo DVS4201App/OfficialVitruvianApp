@@ -55,7 +55,7 @@ namespace OfficialVitruvianApp
 			backBtn.BackgroundColor = Color.Black;
 
 			backBtn.Clicked += (object sender, EventArgs e) => {
-				return new NavigationPage (new MainMenuPage ());
+				//return new NavigationPage (new MainMenuPage ());
 			};
 		}
 	}
