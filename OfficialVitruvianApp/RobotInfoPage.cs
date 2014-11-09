@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Parse; // Remeber to also add it to the Components folder under BOTH iOS and Andriod
 using System.Threading.Tasks;
+
 namespace OfficialVitruvianApp
 {
 	public class RobotInfoPage : ContentPage
@@ -52,7 +53,10 @@ namespace OfficialVitruvianApp
 
 			ScrollView teamList = new ScrollView ();
 			teamList.Content = teamStack;
-			UpdateTeamList();
+			//UpdateTeamList();
+			this.Appearing += (object sender, EventArgs e) => {
+				UpdateTeamList();
+			};
 
 			/*Grid teamGrid = new Grid {
 				HorizontalOptions = LayoutOptions.FillAndExpand,
@@ -88,13 +92,15 @@ namespace OfficialVitruvianApp
 
 		}
 		async void AddNewTeam () {
-			ParseQuery<ParseObject> query = ParseObject.GetQuery("TeamData");
-			int teamCount = await query.CountAsync();
-			teamCount++;
+			//ParseQuery<ParseObject> query = ParseObject.GetQuery("TeamData");
+			//int teamCount = await query.CountAsync();
+			//teamCount++;
 			ParseObject newTeam = new ParseObject("TeamData");
-			newTeam["teamNumber"] = teamCount;
-			await newTeam.SaveAsync();
-			await UpdateTeamList ();
+			//newTeam["teamNumber"] = teamCount;
+			//await newTeam.SaveAsync();
+			//await UpdateTeamList ();
+			Console.WriteLine ("Test");
+			Navigation.PushModalAsync (new AddTeamPage (newTeam));
 		}
 
 		async Task UpdateTeamList(){

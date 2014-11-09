@@ -26,10 +26,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)LoginPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\TeamListCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\MatchListCell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RobotInfo\AddTeamPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)SampeRobotsCode\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
+    <Folder Include="$(MSBuildThisFileDirectory)RobotInfo\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)SampeRobotsCode\Robots.projitems" />
