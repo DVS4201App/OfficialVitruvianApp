@@ -15,7 +15,7 @@ namespace OfficialVitruvianApp
 			dataBtn.TextColor = Color.Green;
 			dataBtn.BackgroundColor = Color.Black;
 			dataBtn.Clicked += (object sender, EventArgs e) => {
-				Navigation.PushModalAsync (new 
+			//	Navigation.PushModalAsync (new 
 			};
 
 			//Access Graphs Button
