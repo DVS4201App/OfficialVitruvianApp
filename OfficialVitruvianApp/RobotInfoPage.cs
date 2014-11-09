@@ -1,12 +1,15 @@
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Xamarin.Forms;
-using Parse;
+using Parse; // Remeber to also add it to the Components folder under BOTH iOS and Andriod
 using System.Threading.Tasks;
-
 namespace OfficialVitruvianApp
 {
 	public class RobotInfoPage : ContentPage
 	{
+		StackLayout teamStack;
+
 		public RobotInfoPage ()
 		{
 			//Team 4201 Button
@@ -20,7 +23,14 @@ namespace OfficialVitruvianApp
 			};
 
 			//A button to toggle between looking at teams and adding data about teams
-			//Code here
+			Button addTeam = new Button {
+				Text = "Add Team",
+				TextColor = Color.Green,
+				BackgroundColor = Color.Black
+			};
+			addTeam.Clicked += (object sender, EventArgs e) => {
+				AddNewTeam();
+			};
 
 			//A button to look for teams based on categories
 			//Code here
@@ -38,26 +48,11 @@ namespace OfficialVitruvianApp
 				Navigation.PushModalAsync(new MainMenuPage());
 			};
 
-			StackLayout teamStack = new StackLayout ();
+			teamStack = new StackLayout ();
 
 			ScrollView teamList = new ScrollView ();
 			teamList.Content = teamStack;
-			teamList.HeightRequest = 150;
-			TeamListCell cell1 = new TeamListCell ();
-			cell1.teamName.Text = "4201";
-			TeamListCell cell2 = new TeamListCell ();
-			cell2.teamName.Text = "4210";
-			TeamListCell cell3 = new TeamListCell ();
-			cell3.teamName.Text = "4000";
-			TeamListCell cell4 = new TeamListCell ();
-			cell4.teamName.Text = "4200";
-			TeamListCell cell5 = new TeamListCell ();
-			cell5.teamName.Text = "4205";
-			teamStack.Children.Add (cell1);
-			teamStack.Children.Add (cell2);
-			teamStack.Children.Add (cell3);
-			teamStack.Children.Add (cell4);
-			teamStack.Children.Add (cell5);
+			UpdateTeamList();
 
 			/*Grid teamGrid = new Grid {
 				HorizontalOptions = LayoutOptions.FillAndExpand,
@@ -82,13 +77,51 @@ namespace OfficialVitruvianApp
 
 				Children = {
 					vitBtn,
-					teamList,
+					addTeam,
 					//modeBtn,
-					//teamGrid,
+					teamList,
 					backBtn
 				}
 			};
 		}
+		void SetupTeamList(){
+
+		}
+		async void AddNewTeam () {
+			ParseQuery<ParseObject> query = ParseObject.GetQuery("TeamData");
+			int teamCount = await query.CountAsync();
+			teamCount++;
+			ParseObject newTeam = new ParseObject("TeamData");
+			newTeam["teamNumber"] = teamCount;
+			await newTeam.SaveAsync();
+			await UpdateTeamList ();
+		}
+
+		async Task UpdateTeamList(){
+			ParseQuery<ParseObject> query = ParseObject.GetQuery("TeamData");
+			var allTeams = await query.FindAsync();
+			teamStack.Children.Clear();
+			foreach (ParseObject obj in allTeams) {
+				await obj.FetchAsync ();
+				TeamListCell cell = new TeamListCell ();
+				cell.teamName.Text = "Team " + obj["teamNumber"];
+				teamStack.Children.Add (cell);
+			}
+		}
+		/*async Task UpdateMatches() {
+			busyIcon.IsVisible = true;
+			busyIcon.IsRunning = true;
+			ParseQuery<ParseObject> query = ParseObject.GetQuery("RobotMatches");
+			var allMatches = await query.FindAsync();
+			matchData.Clear ();
+			foreach (ParseObject obj in allMatches) {
+				await obj.FetchAsync ();
+				matchData.Add(new RobotMatch(obj.Get<int>("matchNumber"), obj));
+			}
+			busyIcon.IsVisible = false;
+			busyIcon.IsRunning = false;
+			//listView.ItemsSource = matchData;
+		}*/
 	}
 }
 

@@ -5,8 +5,19 @@ namespace OfficialVitruvianApp{
 	public class HelpPage:ContentPage{
 		public HelpPage (){
 			Label title = new Label {
-				Text="Welcome",
-				HorizontalOptions=LayoutOptions.Center
+				Text="Help Page",
+				HorizontalOptions=LayoutOptions.CenterAndExpand
+			};
+
+			//Back Button
+			Button backBtn = new Button {
+				Text = "Back",
+				TextColor = Color.Green,
+				BackgroundColor = Color.Black,
+				VerticalOptions = LayoutOptions.CenterAndExpand
+			};
+			backBtn.Clicked += (object sender, EventArgs e) => {
+				Navigation.PushModalAsync(new MainMenuPage());
 			};
 
 			TableView tableView = new TableView {
@@ -24,7 +35,8 @@ namespace OfficialVitruvianApp{
 			this.Content = new StackLayout{
 				Children = {
 					title,
-					tableView
+					tableView,
+					backBtn
 				}
 			};
 		}
