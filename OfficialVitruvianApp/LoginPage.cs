@@ -30,41 +30,45 @@ namespace OfficialVitruvianApp
 
 		public LoginPage(){
 			Label usernameLabel = new Label{Text = "Username:"};
-			usernameLabel.TextColor = Color.White;
-			usernameLabel.BackgroundColor = Color.Green;
+			usernameLabel.TextColor = Color.Black;
 			usernameLabel.HorizontalOptions = LayoutOptions.CenterAndExpand;
-			usernameLabel.VerticalOptions = LayoutOptions.CenterAndExpand;
 
 			username = new Entry ();
-			username.BackgroundColor = Color.Gray;
-			username.WidthRequest = 100;
-			username.TextColor = Color.White;
+			username.HorizontalOptions = LayoutOptions.FillAndExpand;
+			username.TextColor = Color.Black;
+			username.BackgroundColor = Color.Lime;
 
 			Label passwordLabel = new Label {Text = "Password:"};
-			passwordLabel.TextColor = Color.White;
-			passwordLabel.BackgroundColor = Color.Green;
-			passwordLabel.HorizontalOptions = LayoutOptions.CenterAndExpand;
-			passwordLabel.VerticalOptions = LayoutOptions.CenterAndExpand;
+			passwordLabel.TextColor = Color.Black;
+			passwordLabel.VerticalOptions = LayoutOptions.Center;
 
 			password = new Entry ();
+			password.HorizontalOptions = LayoutOptions.FillAndExpand;
 			password.IsPassword = true;
-			password.BackgroundColor = Color.Gray;
+			password.BackgroundColor = Color.Lime;
 			password.WidthRequest = 100;
-			password.TextColor = Color.White;
+			password.TextColor = Color.Black;
 
 			Button login = new Button {Text = "Login"};
-			login.BackgroundColor = Color.Gray;
+			login.HorizontalOptions = LayoutOptions.CenterAndExpand;
+			login.TextColor = Color.Green;
+			login.BackgroundColor = Color.Black;
 			login.Clicked += LoginBtn;
 
 			Button createAccount = new Button {Text = "Create Account"};
-			createAccount.BackgroundColor = Color.Gray;
+			createAccount.HorizontalOptions = LayoutOptions.CenterAndExpand;
+			createAccount.TextColor = Color.Green;
+			createAccount.BackgroundColor = Color.Black;
 			createAccount.Clicked += CreateAccountBtn;
 
 			Button helpPage = new Button { Text = "Help" };
-			helpPage.BackgroundColor = Color.Red;
+			helpPage.HorizontalOptions = LayoutOptions.CenterAndExpand;
+			helpPage.TextColor = Color.Green;
+			helpPage.BackgroundColor = Color.Black;
 			helpPage.Clicked +=HelpPageBtn;
 
 			//BackgroundImage = "Background_Logo.png";
+			BackgroundColor = Color.Green;
 
 			this.Content = new StackLayout {
 				HorizontalOptions = LayoutOptions.CenterAndExpand,
