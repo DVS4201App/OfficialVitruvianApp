@@ -44,7 +44,7 @@ namespace OfficialVitruvianApp
 				
 			//Admin Options Tab Navigation
 			Button adminBtn = new Button ();
-			adminBtn.Text = "Admin Options";
+			adminBtn.Text = "Admin Hub";
 			adminBtn.TextColor = Color.Green;
 			adminBtn.BackgroundColor = Color.Black;
 			adminBtn.Clicked += (object sender, EventArgs e) => {
@@ -57,7 +57,7 @@ namespace OfficialVitruvianApp
 			backBtn.TextColor = Color.Green;
 			backBtn.BackgroundColor = Color.Black;
 			backBtn.Clicked += (object sender, EventArgs e) => {
-				//Navigation.PushModalAsync (new LoginPage ());
+				Navigation.PopModalAsync();
 			};
 				
 			//Page Layout

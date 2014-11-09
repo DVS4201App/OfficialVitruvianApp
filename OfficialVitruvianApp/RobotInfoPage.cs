@@ -32,10 +32,20 @@ namespace OfficialVitruvianApp
 			backBtn.Text = "Back";
 			backBtn.TextColor = Color.Green;
 			backBtn.BackgroundColor = Color.Black;
-
 			backBtn.Clicked += (object sender, EventArgs e) => {
-			//	Navigation.PushModalAsync (new MainMenuPage ());
+				Navigation.PopModalAsync();
 			};
+
+			//Page Layout
+			StackLayout stack = new StackLayout ();
+			stack.Padding = 20; //new Thickness (5, 10, 5, 10); Use this to control padding or spacing on the Left, Right, Top, Bottom
+			stack.Spacing = 20;
+			stack.Children.Add (vitBtn);
+			//stack.Children.Add (blankBtn);
+			//stack.Children.Add (blankBtn);
+			//stack.Children.Add (blankTable);
+			stack.Children.Add (backBtn);
+			Content = stack;
 		}
 	}
 }
