@@ -56,11 +56,7 @@ namespace OfficialVitruvianApp
 
 			backBtn.Clicked += (object sender, EventArgs e) => {
 				//return new NavigationPage (new MainMenuPage ());
-<<<<<<< Upstream, based on origin/master
 			};
-			};
->>>>>>> 22928bf Main Menu Edits
-
 		}
 	}
 }

@@ -46,6 +46,15 @@ namespace OfficialVitruvianApp
 				RegButtonHandler (userEntry.Text, passwordEntry.Text, emailEntry.Text);
 			};
 
+			//Back Button
+			Button backBtn = new Button ();
+			backBtn.Text = "Back";
+			backBtn.TextColor = Color.Black;
+			backBtn.BackgroundColor = Color.Silver;
+			backBtn.Clicked += (object sender, EventArgs e) => {
+				Navigation.PopModalAsync();
+			};
+
 			//Page Layout
 				StackLayout stack = new StackLayout ();
 				stack.Padding = 20; //new Thickness (5, 10, 5, 10); Use this to control padding or spacing on the Left, Right, Top, Bottom
@@ -55,6 +64,7 @@ namespace OfficialVitruvianApp
 				stack.Children.Add (passwordEntry);
 				stack.Children.Add (emailEntry);
 				stack.Children.Add (regBtn);
+				stack.Children.Add (backBtn);
 				Content = stack;
 		}
 
@@ -77,9 +87,7 @@ namespace OfficialVitruvianApp
 				await user.SignUpAsync ();
 				await DisplayAlert("Signup Successful", "Account Created", "Ok");
 				Console.WriteLine ("Account Creation Success");
-
-				// Login was successful.
-				//await Navigation.PushModalAsync (new LoginPage () );
+				Navigation.PopModalAsync ();
 			}
 			catch (Exception e)
 			{

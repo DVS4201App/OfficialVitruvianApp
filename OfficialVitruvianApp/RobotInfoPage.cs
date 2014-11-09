@@ -32,15 +32,10 @@ namespace OfficialVitruvianApp
 			backBtn.Text = "Back";
 			backBtn.TextColor = Color.Green;
 			backBtn.BackgroundColor = Color.Black;
-<<<<<<< Upstream, based on origin/master
-			//backBtn.Clicked += (object sender, EventArgs e) => {
-			//	return new NavigationPage (new MainMenuPage ());
-			//};
-=======
+
 			backBtn.Clicked += (object sender, EventArgs e) => {
 			//	Navigation.PushModalAsync (new MainMenuPage ());
 			};
->>>>>>> 22928bf Main Menu Edits
 		}
 	}
 }
