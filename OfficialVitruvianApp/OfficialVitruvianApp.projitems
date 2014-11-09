@@ -25,6 +25,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)RobotInfoPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LoginPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\TeamListCell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MatchListCell.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)SampeRobotsCode\" />
