@@ -24,9 +24,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)RawDataPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RobotInfoPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LoginPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\TeamListCell.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)SampeRobotsCode\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)SampeRobotsCode\Robots.projitems" />
