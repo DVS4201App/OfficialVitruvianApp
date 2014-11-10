@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
-using Parse; // Remeber to also add it to the Components folder under BOTH iOS and Andriod
+using Parse;
 using System.Threading.Tasks;
 
 namespace OfficialVitruvianApp
@@ -39,6 +39,16 @@ namespace OfficialVitruvianApp
 			//A table with a bunch of other teams
 			//Code here
 
+			//Refresh Button
+			Button refreshBtn = new Button () {
+				Text = "Refresh",
+				TextColor = Color.Green,
+				BackgroundColor = Color.Black
+			};
+			refreshBtn.Clicked += (object sender, EventArgs e) => {
+				UpdateTeamList();
+			};
+
 			//Back Button
 			Button backBtn = new Button ();
 			backBtn.Text = "Back";
@@ -58,23 +68,6 @@ namespace OfficialVitruvianApp
 				UpdateTeamList();
 			};
 
-			/*Grid teamGrid = new Grid {
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-				RowDefinitions = {
-					new RowDefinition {Hieght = GridLength.Auto},
-					new RowDefinition {Hieght = GridLength.Auto},
-					new RowDefinition {
-					}
-				},
-				ColumnDefinitions = {
-				},
-
-				Children = {
-
-				}
-
-			};*/
-
 			this.Content = new StackLayout {
 				HorizontalOptions = LayoutOptions.CenterAndExpand,
 				VerticalOptions = LayoutOptions.CenterAndExpand,
@@ -84,6 +77,7 @@ namespace OfficialVitruvianApp
 					addTeam,
 					//modeBtn,
 					teamList,
+					refreshBtn,
 					backBtn
 				}
 			};
@@ -119,20 +113,6 @@ namespace OfficialVitruvianApp
 				cell.GestureRecognizers.Add (tap);
 			}
 		}
-		/*async Task UpdateMatches() {
-			busyIcon.IsVisible = true;
-			busyIcon.IsRunning = true;
-			ParseQuery<ParseObject> query = ParseObject.GetQuery("RobotMatches");
-			var allMatches = await query.FindAsync();
-			matchData.Clear ();
-			foreach (ParseObject obj in allMatches) {
-				await obj.FetchAsync ();
-				matchData.Add(new RobotMatch(obj.Get<int>("matchNumber"), obj));
-			}
-			busyIcon.IsVisible = false;
-			busyIcon.IsRunning = false;
-			//listView.ItemsSource = matchData;
-		}*/
 	}
 }
 

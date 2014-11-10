@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
-using Parse; // Remeber to also add it to the Components folder under BOTH iOS and Andriod
+using Parse;
 using System.Threading.Tasks;
 
 namespace OfficialVitruvianApp
@@ -17,8 +17,7 @@ namespace OfficialVitruvianApp
 			try {
 				if (teamData ["teamNumber"] != null) {
 					teamNumber.Text = teamData ["teamNumber"].ToString();
-				} else {
-				}
+				} else {}
 			}
 			catch {
 				teamNumber.Placeholder = "Enter Team Number";
@@ -27,18 +26,19 @@ namespace OfficialVitruvianApp
 			teamNumber.Keyboard = Keyboard.Numeric;
 
 			Entry teamName = new Entry ();
-			try {if (teamData ["teamName"] != null) {
-				teamName.Text = teamData ["teamName"].ToString();
-					} else {
-					} 
+			try {
+				if (teamData ["teamName"] != null) {
+					teamName.Text = teamData ["teamName"].ToString();
+				} else {} 
 			} catch {
 				teamName.Placeholder = "Enter Team Name";
 			}
 
 			Entry teamType = new Entry ();
-			try {if (teamData ["teamType"] != null) {
-				teamType.Text = teamData ["teamType"].ToString();
-			} else {}
+			try {
+				if (teamData ["teamType"] != null) {
+					teamType.Text = teamData ["teamType"].ToString();
+				} else {}
 			} catch {
 				teamType.Placeholder = "Enter Team Type";
 			}
@@ -56,7 +56,6 @@ namespace OfficialVitruvianApp
 			ScrollView scrollView = new ScrollView ();
 			scrollView.HorizontalOptions = LayoutOptions.FillAndExpand;
 			scrollView.VerticalOptions = LayoutOptions.FillAndExpand;
-
 			scrollView.Content = new StackLayout () {
 
 				Children = {

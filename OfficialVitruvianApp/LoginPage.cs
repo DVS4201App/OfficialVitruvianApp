@@ -37,6 +37,7 @@ namespace OfficialVitruvianApp
 			username.HorizontalOptions = LayoutOptions.FillAndExpand;
 			username.TextColor = Color.Black;
 			username.BackgroundColor = Color.Lime;
+			username.Placeholder = "Username";
 
 			Label passwordLabel = new Label {Text = "Password:"};
 			passwordLabel.TextColor = Color.Black;
@@ -48,6 +49,8 @@ namespace OfficialVitruvianApp
 			password.BackgroundColor = Color.Lime;
 			password.WidthRequest = 100;
 			password.TextColor = Color.Black;
+			username.Placeholder = "Password";
+
 
 			Button login = new Button {Text = "Login"};
 			login.HorizontalOptions = LayoutOptions.CenterAndExpand;
