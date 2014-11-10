@@ -10,8 +10,8 @@ namespace OfficialVitruvianApp
 {
 	public class CompetitionSelectPage : ContentPage
 	{
-		StackLayout matchStack = new StackLayout ();
-
+		StackLayout matchStack;
+		StackLayout competitionStack;
 		public CompetitionSelectPage ()
 		{
 			//Title
@@ -48,11 +48,16 @@ namespace OfficialVitruvianApp
 			threeBtn.Clicked += (object sender, EventArgs e) => {
 				//This button should change the table of matches to show only matches for this competition.
 			};
+			//Competition scroll
+			ScrollView competitionList = new ScrollView ();
+			competitionStack = new StackLayout ();
+			competitionList.Content = competitionStack;
 
+			//Match scroll
 			ScrollView matchList = new ScrollView ();
 			matchList.Content = matchStack;
 
-			UpdateMatchList();
+			UpdateCompetitionList();
 
 			/*Grid teamGrid = new Grid {
 				HorizontalOptions = LayoutOptions.FillAndExpand,
@@ -93,6 +98,7 @@ namespace OfficialVitruvianApp
 					oneBtn,
 					twoBtn,
 					threeBtn,
+					competitionList,
 					matchList,
 					backBtn
 				}
@@ -101,28 +107,58 @@ namespace OfficialVitruvianApp
 
 
 
-		void SetupMatchList(){
+		void SetupTeamList(){
 
 		}
-		async void AddNewMatch () {
-			ParseQuery<ParseObject> query = ParseObject.GetQuery("MatchData");
-			int matchCount = await query.CountAsync();
-			matchCount++;
-			ParseObject newMatch = new ParseObject("MatchData");
-			newMatch["matchNumber"] = matchCount;
-			await newMatch.SaveAsync();
-			await UpdateMatchList ();
+		async void AddNewTeam () {
+			//ParseQuery<ParseObject> query = ParseObject.GetQuery("TeamData");
+			//int teamCount = await query.CountAsync();
+			//teamCount++;
+			ParseObject newTeam = new ParseObject("TeamData");
+			//newTeam["teamNumber"] = teamCount;
+			//await newTeam.SaveAsync();
+			//await UpdateTeamList ();
+			Console.WriteLine ("Test");
+			Navigation.PushModalAsync (new AddTeamPage (newTeam));
 		}
 
-		async Task UpdateMatchList(){
-			ParseQuery<ParseObject> query = ParseObject.GetQuery("MatchData");
+		async Task UpdateCompetitionList(){
+			ParseQuery<ParseObject> query = ParseObject.GetQuery("CompetitionData");
+			var allCompetitions = await query.FindAsync();
+			competitionStack.Children.Clear();
+			foreach (ParseObject obj in allCompetitions) {
+				await obj.FetchAsync ();
+				TeamListCell cell = new TeamListCell ();
+				cell.teamName.Text = "Competition " + obj["name"];
+				competitionStack.Children.Add (cell);
+				TapGestureRecognizer tap = new TapGestureRecognizer ();
+				tap.Tapped += (object sender, EventArgs e) => {
+					//Navigation.PushModalAsync (new AddTeamPage (obj));
+					ParseRelation<ParseObject> matchList = obj.GetRelation<ParseObject>("matches");
+					ParseObject tempM = new ParseObject("RobotMatches");
+					tempM["name"] = "testName";
+					matchList.Add(tempM);
+					obj.SaveAsync();
+					UpdateMatchList(obj);
+				};
+				cell.GestureRecognizers.Add (tap);
+			}
+		}
+		async Task UpdateMatchList(ParseObject competition){
+			ParseRelation<ParseObject> matchList = competition.GetRelation<ParseObject>("matches");
+			ParseQuery<ParseObject> query = matchList.Query;
 			var allMatches = await query.FindAsync();
 			matchStack.Children.Clear();
 			foreach (ParseObject obj in allMatches) {
 				await obj.FetchAsync ();
-				MatchListCell cell = new MatchListCell ();
-				cell.matchName.Text = "Match " + obj["matchNumber"];
-				matchStack.Children.Add (cell);
+				TeamListCell cell = new TeamListCell ();
+				cell.teamName.Text = "Match " + obj["name"];
+				competitionStack.Children.Add (cell);
+				TapGestureRecognizer tap = new TapGestureRecognizer ();
+				tap.Tapped += (object sender, EventArgs e) => {
+					//Navigation.PushModalAsync (new AddTeamPage (obj));
+				};
+				cell.GestureRecognizers.Add (tap);
 			}
 		}
 		/*async Task UpdateMatches() {
@@ -139,8 +175,6 @@ namespace OfficialVitruvianApp
 			busyIcon.IsRunning = false;
 			//listView.ItemsSource = matchData;
 		}*/
-
-
 	}
 }
 
