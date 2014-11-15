@@ -21,7 +21,7 @@ namespace OfficialVitruvianApp
 			infoBtn.TextColor = Color.Green;
 			infoBtn.BackgroundColor = Color.Black;
 			infoBtn.Clicked += (object sender, EventArgs e) => {
-				Navigation.PushModalAsync (new RobotInfoPage ());
+				Navigation.PushModalAsync (new RobotInfoViewPage());
 			};
 
 			//Scouting Tab Navigation

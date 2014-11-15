@@ -13,6 +13,14 @@ namespace OfficialVitruvianApp
 
 		public AddTeamPage (ParseObject teamData)
 		{
+			Label title = new Label {
+				Text = "Edit Team Info"
+			};
+
+			Label teamNumberLabel = new Label () {
+				Text = "Team Number:"
+			};
+
 			Entry teamNumber = new Entry ();
 			try {
 				if (teamData ["teamNumber"] != null) {
@@ -25,6 +33,10 @@ namespace OfficialVitruvianApp
 
 			teamNumber.Keyboard = Keyboard.Numeric;
 
+			Label teamNameLabel = new Label () {
+				Text = "Team Name:"
+			};
+
 			Entry teamName = new Entry ();
 			try {
 				if (teamData ["teamName"] != null) {
@@ -33,6 +45,10 @@ namespace OfficialVitruvianApp
 			} catch {
 				teamName.Placeholder = "Enter Team Name";
 			}
+
+			Label teamTypeLabel = new Label () {
+				Text = "Type:"
+			};
 
 			Entry teamType = new Entry ();
 			try {
@@ -59,8 +75,11 @@ namespace OfficialVitruvianApp
 			scrollView.Content = new StackLayout () {
 
 				Children = {
+					teamNumberLabel,
 					teamNumber,
+					teamNameLabel,
 					teamName,
+					teamTypeLabel,
 					teamType,
 					updateBtn
 				}

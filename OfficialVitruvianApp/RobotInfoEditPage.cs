@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace OfficialVitruvianApp
 {
-	public class RobotInfoPage : ContentPage
+	public class RobotInfoEditPage : ContentPage
 	{
 		StackLayout teamStack;
 
-		public RobotInfoPage ()
+		public RobotInfoEditPage ()
 		{
 			//Team 4201 Button
 			Button vitBtn = new Button () {
-				Text = "Robot Information",
+				Text = "Robot Information (Edit Mode)",
 				TextColor = Color.Green,
 				BackgroundColor = Color.Black
 			};
@@ -24,6 +24,15 @@ namespace OfficialVitruvianApp
 			};
 
 			//A button to toggle between looking at teams and adding data about teams
+			Button modeToggle = new Button {
+				Text = "Mode Switch",
+				TextColor = Color.Green,
+				BackgroundColor = Color.Black
+			};
+			modeToggle.Clicked += (object sender, EventArgs e) => {
+				Navigation.PushModalAsync (new RobotInfoViewPage ());
+			};
+			//A button to add a new team to the list
 			Button addTeam = new Button {
 				Text = "Add Team",
 				TextColor = Color.Green,
@@ -34,9 +43,6 @@ namespace OfficialVitruvianApp
 			};
 
 			//A button to look for teams based on categories
-			//Code here
-
-			//A table with a bunch of other teams
 			//Code here
 
 			//Refresh Button
@@ -59,6 +65,8 @@ namespace OfficialVitruvianApp
 				Navigation.PushModalAsync(new MainMenuPage());
 			};
 
+
+			//Page Layout
 			teamStack = new StackLayout ();
 
 			ScrollView teamList = new ScrollView ();
@@ -74,8 +82,8 @@ namespace OfficialVitruvianApp
 
 				Children = {
 					vitBtn,
+					modeToggle,
 					addTeam,
-					//modeBtn,
 					teamList,
 					refreshBtn,
 					backBtn

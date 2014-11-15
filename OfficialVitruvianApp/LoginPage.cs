@@ -41,7 +41,7 @@ namespace OfficialVitruvianApp
 
 			Label passwordLabel = new Label {Text = "Password:"};
 			passwordLabel.TextColor = Color.Black;
-			passwordLabel.VerticalOptions = LayoutOptions.Center;
+			passwordLabel.VerticalOptions = LayoutOptions.CenterAndExpand;
 
 			password = new Entry ();
 			password.HorizontalOptions = LayoutOptions.FillAndExpand;
@@ -49,7 +49,7 @@ namespace OfficialVitruvianApp
 			password.BackgroundColor = Color.Lime;
 			password.WidthRequest = 100;
 			password.TextColor = Color.Black;
-			username.Placeholder = "Password";
+			password.Placeholder = "Password";
 
 
 			Button login = new Button {Text = "Login"};

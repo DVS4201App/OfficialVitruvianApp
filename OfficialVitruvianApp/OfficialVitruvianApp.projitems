@@ -22,11 +22,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)CreateAcctPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MainMenuPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RawDataPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RobotInfoPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LoginPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\TeamListCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\MatchListCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RobotInfo\AddTeamPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RobotInfo\ViewTeamPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RobotInfoEditPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RobotInfoViewPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)SampeRobotsCode\" />
