@@ -1,0 +1,23 @@
+Overall:
+	How To:
+	-Enable Security/Access Control
+	-Have multiple buttons/items in the same 'row'
+
+LoginPage:
+	Bugs/Issues:
+
+RobotInfoPage:
+	How to: 
+	-Upload Images using Parse and Display it in the app
+ 
+	Bugs/Issues:
+	-RobotInfoPage is turning into just a data display per team, 
+	suggest making a seperate scouting page for data input during competition?
+
+Raw Data:
+ 	How to:
+ 	-Organize/group data
+ 	-Create analytics from scouted data
+
+ 	Bugs/Issues:
+ 	-Have data carry over to multiple competitions? (for teams participating in them)

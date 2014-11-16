@@ -38,5 +38,6 @@
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)SampeRobotsCode\Robots.projitems" />
     <None Include="$(MSBuildThisFileDirectory)SampeRobotsCode\Robots.shproj" />
+    <None Include="$(MSBuildThisFileDirectory)ToDo List.txt" />
   </ItemGroup>
 </Project>
