@@ -42,13 +42,13 @@ namespace OfficialVitruvianApp
 				Navigation.PushModalAsync (new RawDataPage ());
 			};
 				
-			//Admin Options Tab Navigation
-			Button adminBtn = new Button ();
-			adminBtn.Text = "Admin Options";
-			adminBtn.TextColor = Color.Green;
-			adminBtn.BackgroundColor = Color.Black;
-			adminBtn.Clicked += (object sender, EventArgs e) => {
-				Navigation.PushModalAsync (new AdminOptionsPage ());
+			//Pit Scouting Navigation
+			Button pitBtn = new Button ();
+			pitBtn.Text = "Pit Scouting";
+			pitBtn.TextColor = Color.Green;
+			pitBtn.BackgroundColor = Color.Black;
+			pitBtn.Clicked += (object sender, EventArgs e) => {
+				Navigation.PushModalAsync (new PitScoutingPage ());
 			};
 
 			//Back Button Navigation
@@ -68,7 +68,7 @@ namespace OfficialVitruvianApp
 					infoBtn,
 					scoutingBtn,
 					dataBtn,
-					adminBtn,
+					pitBtn,
 					backBtn
 				}
 			};

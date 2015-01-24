@@ -1,33 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Parse;
 using System.Threading.Tasks;
 
 namespace OfficialVitruvianApp
 {
-	public class AddTeamPage:ContentPage
+	public class AddPitTeam:ContentPage
 	{
 		ParseObject data;
 
-		public AddTeamPage (ParseObject teamData)
+		public AddPitTeam (ParseObject teamData)
 		{
-			Label teamNumberLabel = new Label () {
+			Label teamNumberLabel = new Label(){
 				Text = "Team Number:"
 			};
-
-			Entry teamNumber = new Entry ();
+	
+			Entry teamNumber = new Entry (){
+				Keyboard = Keyboard.Numeric
+			};
 			try {
 				if (teamData ["teamNumber"] != null) {
 					teamNumber.Text = teamData ["teamNumber"].ToString();
 				} else {}
 			}
 			catch {
-				teamNumber.Placeholder = "Enter Team Number";
+				teamNumber.Placeholder = "[Enter Team Number]";
 			}
-
-			teamNumber.Keyboard = Keyboard.Numeric;
 
 			Label teamNameLabel = new Label () {
 				Text = "Team Name:"
@@ -39,29 +37,38 @@ namespace OfficialVitruvianApp
 					teamName.Text = teamData ["teamName"].ToString();
 				} else {} 
 			} catch {
-				teamName.Placeholder = "Enter Team Name";
+				teamName.Placeholder = "[Enter Team Name]";
 			}
 
-			Label teamTypeLabel = new Label () {
-				Text = "Type:"
+			Label driveTypeLabel = new Label () {
+				Text = "Drive Type:"
 			};
 
-			Entry teamType = new Entry ();
-			try {
-				if (teamData ["teamType"] != null) {
-					teamType.Text = teamData ["teamType"].ToString();
-				} else {}
-			} catch {
-				teamType.Placeholder = "Enter Team Type";
-			}
+			//How to make a drop-down list?
+			//driveType
+
+			Label pickupOrientationLabel = new Label () {
+				Text = "Tote Pickup Orentation:"
+			};
+
+			//How to make a drop-down list?
+			//pickupOrientation
 
 			data = teamData;
+
+			Button backBtn = new Button (){
+				Text = "Back"
+			};
+			backBtn.Clicked += (object sender, EventArgs e) => {
+				Navigation.PushModalAsync(new PitScoutingPage());
+			};
 
 			Button updateBtn = new Button(){Text = "Update"};
 			updateBtn.Clicked += (object sender, EventArgs e) => {
 				data ["teamNumber"] = int.Parse(teamNumber.Text);
 				data ["teamName"] = teamName.Text;
-				data ["teamType"] = teamType.Text;
+				//data ["driveType"] = driveType.Text;
+				//data ["toteOrientation"] = pickupOrientation.Text;
 				SaveData ();
 			};
 
@@ -75,8 +82,11 @@ namespace OfficialVitruvianApp
 					teamNumber,
 					teamNameLabel,
 					teamName,
-					teamTypeLabel,
-					teamType,
+					driveTypeLabel,
+					//driveType,
+					pickupOrientationLabel,
+					//pickupOrientation,
+					backBtn,
 					updateBtn
 				}
 			};

@@ -29,11 +29,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)RobotInfo\ViewTeamPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RobotInfoEditPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RobotInfoViewPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MatchScouting.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PitScoutingPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PitScoutingPage\AddPitTeam.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)SampeRobotsCode\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
     <Folder Include="$(MSBuildThisFileDirectory)RobotInfo\" />
+    <Folder Include="$(MSBuildThisFileDirectory)PitScoutingPage\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)SampeRobotsCode\Robots.projitems" />

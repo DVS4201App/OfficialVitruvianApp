@@ -2,6 +2,7 @@ Overall:
 	How To:
 	-Enable Security/Access Control
 	-Have multiple buttons/items in the same 'row'
+	-Update for 2015 Competition
 
 LoginPage:
 	Bugs/Issues:
