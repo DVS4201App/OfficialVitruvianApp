@@ -95,8 +95,8 @@ namespace OfficialVitruvianApp
 			};
 
 			StackLayout side = new StackLayout () {
+				HorizontalOptions = LayoutOptions.CenterAndExpand,
 				VerticalOptions = LayoutOptions.FillAndExpand,
-				HorizontalOptions = LayoutOptions.FillAndExpand,
 
 				Children = {
 					teamNumberLabel,
@@ -107,7 +107,6 @@ namespace OfficialVitruvianApp
 			};
 
 			StackLayout bottom = new StackLayout () {
-				VerticalOptions = LayoutOptions.FillAndExpand,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 
 				Children = {

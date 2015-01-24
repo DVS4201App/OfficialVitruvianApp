@@ -71,7 +71,7 @@ namespace OfficialVitruvianApp
 
 			this.Content = new StackLayout () {
 				HorizontalOptions = LayoutOptions.CenterAndExpand,
-				VerticalOptions = LayoutOptions.CenterAndExpand,
+				VerticalOptions = LayoutOptions.FillAndExpand,
 
 
 				Children = {
@@ -86,7 +86,7 @@ namespace OfficialVitruvianApp
 			//ParseQuery<ParseObject> query = ParseObject.GetQuery("TeamData");
 			//int teamCount = await query.CountAsync();
 			//teamCount++;
-			ParseObject newTeam = new ParseObject("TeamPitData");
+			ParseObject newTeam = new ParseObject("TeamData");
 			//newTeam["teamNumber"] = teamCount;
 			//await newTeam.SaveAsync();
 			//await UpdateTeamList ();
