@@ -11,6 +11,30 @@ namespace OfficialVitruvianApp
 
 		public AddPitTeam (ParseObject teamData)
 		{
+			Grid grid = new Grid () {
+				VerticalOptions = LayoutOptions.FillAndExpand,
+				HorizontalOptions = LayoutOptions.FillAndExpand,
+
+				RowDefinitions = {
+					new RowDefinition{ Height = GridLength.Auto },
+					new RowDefinition{ Height = GridLength.Auto },
+					new RowDefinition{ Height = GridLength.Auto },
+					new RowDefinition{ Height = GridLength.Auto }
+				},
+				ColumnDefinitions = {
+					new ColumnDefinition{ Width = GridLength.Auto },
+					new ColumnDefinition{ Width = GridLength.Auto }
+				}
+			};
+
+			Label imageTest = new Label {
+				Text = "[Upload Image]",
+				TextColor = Color.Black,
+				BackgroundColor = Color.Green,
+				XAlign = TextAlignment.Center,
+				YAlign = TextAlignment.Center
+			};
+
 			Label teamNumberLabel = new Label(){
 				Text = "Team Number:"
 			};
@@ -72,26 +96,43 @@ namespace OfficialVitruvianApp
 				SaveData ();
 			};
 
-			ScrollView scrollView = new ScrollView ();
-			scrollView.HorizontalOptions = LayoutOptions.FillAndExpand;
-			scrollView.VerticalOptions = LayoutOptions.FillAndExpand;
-			scrollView.Content = new StackLayout () {
+			StackLayout side = new StackLayout () {
+				VerticalOptions = LayoutOptions.FillAndExpand,
+				HorizontalOptions = LayoutOptions.FillAndExpand,
 
 				Children = {
 					teamNumberLabel,
 					teamNumber,
 					teamNameLabel,
-					teamName,
+					teamName
+				}
+			};
+
+			StackLayout bottom = new StackLayout () {
+				VerticalOptions = LayoutOptions.FillAndExpand,
+				HorizontalOptions = LayoutOptions.FillAndExpand,
+
+				Children = {
 					driveTypeLabel,
 					//driveType,
 					pickupOrientationLabel,
-					//pickupOrientation,
+					//pickupOrientaiton,
 					backBtn,
 					updateBtn
 				}
 			};
+			grid.Children.Add (imageTest, 0, 0);
+			grid.Children.Add (side, 1, 0);
+			grid.Children.Add (bottom, 0, 2, 1, 2);
 
-			Content = scrollView;
+			this.Content = new StackLayout(){
+				HorizontalOptions = LayoutOptions.FillAndExpand,
+				VerticalOptions = LayoutOptions.FillAndExpand,
+
+				Children = {
+					grid
+				}
+			};
 		}
 		async void SaveData(){
 			Console.WriteLine ("Saving...");
