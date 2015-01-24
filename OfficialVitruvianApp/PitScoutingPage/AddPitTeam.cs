@@ -17,8 +17,6 @@ namespace OfficialVitruvianApp
 
 				RowDefinitions = {
 					new RowDefinition{ Height = GridLength.Auto },
-					new RowDefinition{ Height = GridLength.Auto },
-					new RowDefinition{ Height = GridLength.Auto },
 					new RowDefinition{ Height = GridLength.Auto }
 				},
 				ColumnDefinitions = {
@@ -126,7 +124,7 @@ namespace OfficialVitruvianApp
 			grid.Children.Add (bottom, 0, 2, 1, 2);
 
 			this.Content = new StackLayout(){
-				HorizontalOptions = LayoutOptions.FillAndExpand,
+				HorizontalOptions = LayoutOptions.CenterAndExpand,
 				VerticalOptions = LayoutOptions.FillAndExpand,
 
 				Children = {

@@ -73,6 +73,7 @@ namespace OfficialVitruvianApp
 				HorizontalOptions = LayoutOptions.CenterAndExpand,
 				VerticalOptions = LayoutOptions.CenterAndExpand,
 
+
 				Children = {
 					pageLabel,
 					teamList,

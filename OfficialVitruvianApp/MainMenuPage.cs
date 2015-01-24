@@ -62,6 +62,7 @@ namespace OfficialVitruvianApp
 
 			//Page Layout
 			this.Content = new StackLayout (){
+				VerticalOptions = LayoutOptions.CenterAndExpand,
 				Padding = 20, Spacing = 20, //new Thickness (5, 10, 5, 10); Use this to control padding or spacing on the Left, Right, Top, Bottom
 
 				Children = {
