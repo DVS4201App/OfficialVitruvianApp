@@ -146,7 +146,7 @@ namespace OfficialVitruvianApp
 
 			Button updateBtn = new Button(){Text = "Update"};
 			updateBtn.Clicked += (object sender, EventArgs e) => {
-				//data ["teamImage"] = ???
+				//data ["teamImage"] = ???;
 				data ["teamNumber"] = int.Parse(teamNumber.Text);
 				data ["teamName"] = teamName.Text;
 				data ["driveType"] = drivePicker.Title;

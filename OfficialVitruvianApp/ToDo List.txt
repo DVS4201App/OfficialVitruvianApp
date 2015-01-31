@@ -1,24 +1,35 @@
 Overall:
+	-Update Solution for 2015 game (remove/repurpose obsolete pages) 
+
 	How To:
-	-Enable Security/Access Control
-	-Have multiple buttons/items in the same 'row'
-	-Update for 2015 Competition
+	-Upload Images using Parse and display it in the app
 
 LoginPage:
 	Bugs/Issues:
+	-For some reason, trying to log in on my emulator gives the following error(Jonathan Dao):  
+		Error - Unknown: Argument cannot be null. Parameter name: cancel
+
+PitScoutingPage:
+	How To: 
+ 	-Sort by team number?
+
+	Bugs/Issues:
+	-Takes some time to pull data from Parse
+	-On first pull, duplicates data recieved
+
+	AddPitTeam:
+	How To:
+	-Resize an image to fit into the grid/use thumbnails
+
+	Bugs/Issues:
+	-does not completely fill the page horizontally (minor)
+
+MatchScouting:
+How To:
+
+Bugs/Issues:
 
 RobotInfoPage:
-	How to: 
-	-Upload Images using Parse and Display it in the app
- 
-	Bugs/Issues:
-	-RobotInfoPage is turning into just a data display per team, 
-	suggest making a seperate scouting page for data input during competition?
+How To:
 
-Raw Data:
- 	How to:
- 	-Organize/group data
- 	-Create analytics from scouted data
-
- 	Bugs/Issues:
- 	-Have data carry over to multiple competitions? (for teams participating in them)
+Bugs/Issues:

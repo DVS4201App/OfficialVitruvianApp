@@ -15,33 +15,6 @@ namespace OfficialVitruvianApp
 			menuLabel.HorizontalOptions = LayoutOptions.Center;
 			menuLabel.Text = "Main Menu";
 
-			//Robot Info Tab Navigation
-			Button infoBtn = new Button ();
-			infoBtn.Text = "Robot Information";
-			infoBtn.TextColor = Color.Green;
-			infoBtn.BackgroundColor = Color.Black;
-			infoBtn.Clicked += (object sender, EventArgs e) => {
-				Navigation.PushModalAsync (new RobotInfoViewPage());
-			};
-
-			//Scouting Tab Navigation
-			Button scoutingBtn = new Button ();
-			scoutingBtn.Text = "Match Scouting";
-			scoutingBtn.TextColor = Color.Green;
-			scoutingBtn.BackgroundColor = Color.Black;
-			scoutingBtn.Clicked += (object sender, EventArgs e) => {
-				Navigation.PushModalAsync (new CompetitionSelectPage ());
-			};
-
-			//Raw Data Tab Navigation
-			Button dataBtn = new Button ();
-			dataBtn.Text = "Raw Data";
-			dataBtn.TextColor = Color.Green;
-			dataBtn.BackgroundColor = Color.Black;
-			dataBtn.Clicked += (object sender, EventArgs e) => {
-				Navigation.PushModalAsync (new RawDataPage ());
-			};
-				
 			//Pit Scouting Navigation
 			Button pitBtn = new Button ();
 			pitBtn.Text = "Pit Scouting";
@@ -51,12 +24,30 @@ namespace OfficialVitruvianApp
 				Navigation.PushModalAsync (new PitScoutingPage ());
 			};
 
+			//Scouting Tab Navigation
+			Button matchBtn = new Button ();
+			matchBtn.Text = "Match Scouting";
+			matchBtn.TextColor = Color.Green;
+			matchBtn.BackgroundColor = Color.Black;
+			matchBtn.Clicked += (object sender, EventArgs e) => {
+				Navigation.PushModalAsync (new CompetitionSelectPage ());
+			};
+
+			//Robot Info Tab Navigation
+			Button infoBtn = new Button ();
+			infoBtn.Text = "Robot Information";
+			infoBtn.TextColor = Color.Green;
+			infoBtn.BackgroundColor = Color.Black;
+			infoBtn.Clicked += (object sender, EventArgs e) => {
+				Navigation.PushModalAsync (new RobotInfoPage());
+			};
+
 			//Back Button Navigation
-			Button backBtn = new Button ();
-			backBtn.Text = "Logout";
-			backBtn.TextColor = Color.Green;
-			backBtn.BackgroundColor = Color.Black;
-			backBtn.Clicked += (object sender, EventArgs e) => {
+			Button logoutBtn = new Button ();
+			logoutBtn.Text = "Logout";
+			logoutBtn.TextColor = Color.Green;
+			logoutBtn.BackgroundColor = Color.Black;
+			logoutBtn.Clicked += (object sender, EventArgs e) => {
 				Navigation.PushModalAsync(new LoginPage ());
 			};
 
@@ -67,10 +58,10 @@ namespace OfficialVitruvianApp
 
 				Children = {
 					infoBtn,
-					scoutingBtn,
-					dataBtn,
 					pitBtn,
-					backBtn
+					matchBtn,
+					pitBtn,
+					logoutBtn
 				}
 			};
 		}

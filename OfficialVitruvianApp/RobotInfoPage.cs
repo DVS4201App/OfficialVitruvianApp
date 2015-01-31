@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace OfficialVitruvianApp
 {
-	public class RobotInfoViewPage : ContentPage
+	public class RobotInfoPage : ContentPage
 	{
 		StackLayout teamStack;
 
-		public RobotInfoViewPage ()
+		public RobotInfoPage ()
 		{
 			//Team 4201 Button
 			Button vitBtn = new Button () {
