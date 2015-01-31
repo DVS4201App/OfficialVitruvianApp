@@ -2,12 +2,14 @@ Overall:
 	-Update Solution for 2015 game (remove/repurpose obsolete pages) 
 
 	How To:
-	-Upload Images using Parse and display it in the app
+	-Upload Images using Parse and display it in the app/Upload images to parse
+	-Organize data on Parse
 
 LoginPage:
 	Bugs/Issues:
 	-For some reason, trying to log in on my emulator gives the following error(Jonathan Dao):  
-		Error - Unknown: Argument cannot be null. Parameter name: cancel
+		"Error - Unknown: Argument cannot be null. Parameter name: cancel"
+
 
 PitScoutingPage:
 	How To: 
@@ -24,10 +26,12 @@ PitScoutingPage:
 	Bugs/Issues:
 	-does not completely fill the page horizontally (minor)
 
+
 MatchScouting:
 How To:
 
 Bugs/Issues:
+
 
 RobotInfoPage:
 How To:
