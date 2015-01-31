@@ -121,7 +121,7 @@ namespace OfficialVitruvianApp
 					orientationPicker.Title = teamData ["toteOrientation"].ToString();
 				} else {} 
 			} catch {
-				drivePicker.Title = "[Select Tote Pickup Orientation]";
+				orientationPicker.Title = "[Select Tote Pickup Orientation]";
 			}
 
 			for(ToteOrientation type=ToteOrientation.None; type<=ToteOrientation.Both; type++){
