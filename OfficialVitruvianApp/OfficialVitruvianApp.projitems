@@ -38,10 +38,12 @@
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
     <Folder Include="$(MSBuildThisFileDirectory)RobotInfo\" />
     <Folder Include="$(MSBuildThisFileDirectory)PitScoutingPage\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Images\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)SampeRobotsCode\Robots.projitems" />
     <None Include="$(MSBuildThisFileDirectory)SampeRobotsCode\Robots.shproj" />
     <None Include="$(MSBuildThisFileDirectory)ToDo List.txt" />
+    <None Include="$(MSBuildThisFileDirectory)Images\Placeholder_image_placeholder.png" />
   </ItemGroup>
 </Project>

@@ -37,7 +37,7 @@ namespace OfficialVitruvianApp
 				Navigation.PushModalAsync(new MainMenuPage());
 			};
 
-			//RefershBtn
+			//Refresh Button
 			Button refreshBtn = new Button () {
 				Text = "Refresh",
 				TextColor = Color.Green,
