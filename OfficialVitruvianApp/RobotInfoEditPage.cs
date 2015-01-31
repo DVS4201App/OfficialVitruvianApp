@@ -30,7 +30,7 @@ namespace OfficialVitruvianApp
 				BackgroundColor = Color.Black
 			};
 			modeToggle.Clicked += (object sender, EventArgs e) => {
-				Navigation.PushModalAsync (new RobotInfoViewPage ());
+				Navigation.PushModalAsync (new RobotInfoPage ());
 			};
 			//A button to add a new team to the list
 			Button addTeam = new Button {

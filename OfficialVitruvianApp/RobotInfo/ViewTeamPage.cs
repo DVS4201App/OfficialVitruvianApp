@@ -64,7 +64,7 @@ namespace OfficialVitruvianApp
 			};
 
 			backBtn.Clicked += (object sender, EventArgs e) => {
-				Navigation.PushModalAsync(new RobotInfoViewPage());
+				Navigation.PushModalAsync(new RobotInfoPage());
 			};
 
 			ScrollView scrollView = new ScrollView ();
