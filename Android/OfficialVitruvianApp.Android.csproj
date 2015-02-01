@@ -77,7 +77,9 @@
     <AndroidResource Include="Resources\layout\Main.axml" />
     <AndroidResource Include="Resources\values\Strings.xml" />
     <AndroidResource Include="Resources\drawable\Icon.png" />
-    <AndroidResource Include="Resources\drawable\Placeholder_image_placeholder.png" />
+    <AndroidResource Include="..\OfficialVitruvianApp\Images\Placeholder_image_placeholder.png">
+      <Link>Resources\drawable\Placeholder_image_placeholder.png</Link>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="..\OfficialVitruvianApp\OfficialVitruvianApp.projitems" Label="Shared" Condition="Exists('..\OfficialVitruvianApp\OfficialVitruvianApp.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />

@@ -29,34 +29,25 @@ namespace OfficialVitruvianApp
 				}
 			};
 
-			Label teamImage = new Label {
-				Text = "[Upload Image]",
-				TextColor = Color.Black,
-				BackgroundColor = Color.Green,
-				XAlign = TextAlignment.Center,
-				YAlign = TextAlignment.Center
+			var imageTap = new TapGestureRecognizer ();
+			imageTap.Tapped += (s, e) => {
+				Console.WriteLine("Tapped");
+				//Upload Image
 			};
 
-			//Test code (Not working):
-			/*
-			Button teamImage = new Button ();
-			teamImage.BackgroundColor = Color.Transparent;
-			teamImage.Image = "Placeholder_image_placeholder.png";			
-			teamImage.ScaleTo (scale, 1, null);
-			/*
+			Image robotImage = new Image {
+				Source = "Placeholder_image_placeholder.png",
+				Aspect = Aspect.AspectFit //Need better way to scale an image while keeping aspect ratio, but not overflowing everything else
+			};
 			try {
-				if (teamImage ["teamImage"] != null) {
-					teamImage.Image = teamData ["teamImage"];
+				if (teamData ["robotImage"] != null) {
+					robotImage.Source = (ImageSource)teamData ["robotImage"]; //Is this the right cast?
 				} else {}
 			}
 			catch {
-				teamImage.Source = ImageSource.FromResource("placeholder_image_placeholder.png");
+				robotImage.Source = "Placeholder_image_placeholder.png";
 			}
-			teamImage.Clicked += (object sender, EventArgs e) => {
-				//Upload an image or take a picture
-			};
-
-			};*/
+			robotImage.GestureRecognizers.Add (imageTap);
 
 			Label teamNumberLabel = new Label(){
 				Text = "Team Number:"
@@ -178,7 +169,8 @@ namespace OfficialVitruvianApp
 					updateBtn
 				}
 			};
-			grid.Children.Add (teamImage, 0, 0);
+
+			grid.Children.Add (robotImage, 0, 0);
 			grid.Children.Add (side, 1, 0);
 			grid.Children.Add (bottom, 0, 2, 1, 2);
 
