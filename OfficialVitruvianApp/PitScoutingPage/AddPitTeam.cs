@@ -3,7 +3,8 @@ using Xamarin.Forms;
 using Parse;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-
+using Xamarin.Media;
+using System.IO;
 namespace OfficialVitruvianApp
 {
 	public class AddPitTeam:ContentPage
@@ -17,36 +18,53 @@ namespace OfficialVitruvianApp
 		{
 			Grid grid = new Grid () {
 				VerticalOptions = LayoutOptions.FillAndExpand,
-				HorizontalOptions = LayoutOptions.FillAndExpand,
+				HorizontalOptions = LayoutOptions.CenterAndExpand,
 
 				RowDefinitions = {
-					new RowDefinition{ Height = GridLength.Auto },
+					new RowDefinition{ Height = new GridLength(160, GridUnitType.Absolute) },
 					new RowDefinition{ Height = GridLength.Auto }
 				},
 				ColumnDefinitions = {
-					new ColumnDefinition{ Width = GridLength.Auto },
+					new ColumnDefinition{ Width = new GridLength(160, GridUnitType.Absolute) },
 					new ColumnDefinition{ Width = GridLength.Auto }
 				}
 			};
+					
+			//ParseObject picObj = new ParseObject("Teams");
+			//picObj.Add ("name", "robotImage");
+			//ParseFile.imageFile = new ParseFile("robotImage.jpg");
+			//picObj.Add ("imageFile", imageFile);
+			//picObj.SaveAsync();
 
 			var imageTap = new TapGestureRecognizer ();
 			imageTap.Tapped += (s, e) => {
 				Console.WriteLine("Tapped");
-				//Upload Image
+				if(teamData ["robotImage"] != null) {
+					//Navigation.PushModalAsync(new RobotImagePage(teamData));
+				} else {
+					//Upload/Take Picture
+				}
 			};
+				
 
-			Image robotImage = new Image {
-				Source = "Placeholder_image_placeholder.png",
-				Aspect = Aspect.AspectFit //Need better way to scale an image while keeping aspect ratio, but not overflowing everything else
-			};
+			Image robotImage = new Image ();
 			try {
 				if (teamData ["robotImage"] != null) {
-					robotImage.Source = (ImageSource)teamData ["robotImage"]; //Is this the right cast?
+					ParseFile robotImageURL = (ParseFile)teamData ["robotImage"]; //Gets the image from parse and converts it to ParseFile
+
+					//How to write this so caching actually works?
+					robotImage.Source = new UriImageSource{
+						Uri = robotImageURL.Url,
+						CachingEnabled = true,
+						CacheValidity = new TimeSpan(4,0,0,0) //Caches Images onto your decvice for 4 days
+					};
 				} else {}
 			}
 			catch {
+				Console.WriteLine("Showing Placeholder Image");
 				robotImage.Source = "Placeholder_image_placeholder.png";
 			}
+			robotImage.Aspect = Aspect.AspectFit; //Need better way to scale an image while keeping aspect ratio, but not overflowing everything else
 			robotImage.GestureRecognizers.Add (imageTap);
 
 			Label teamNumberLabel = new Label(){
@@ -146,8 +164,8 @@ namespace OfficialVitruvianApp
 			};
 
 			StackLayout side = new StackLayout () {
-				HorizontalOptions = LayoutOptions.CenterAndExpand,
 				VerticalOptions = LayoutOptions.FillAndExpand,
+				HorizontalOptions = LayoutOptions.CenterAndExpand,
 
 				Children = {
 					teamNumberLabel,
@@ -182,5 +200,28 @@ namespace OfficialVitruvianApp
 			Console.WriteLine ("Done Saving");
 			Navigation.PopModalAsync ();
 		}
+
+		public byte[] ImageToBinary(string imagePath)
+		{
+			FileStream fileStream = new FileStream(imagePath, FileMode.Open, FileAccess.Read);
+			byte[] buffer = new byte[fileStream.Length];
+			fileStream.Read(buffer, 0, (int)fileStream.Length);
+			fileStream.Close();
+			return buffer;
+		}
+
+		/*
+		async void OpenPicker(){
+			MediaPicker imagePicker = new MediaPicker(this);
+			try{
+				MediaFile robotImage = await imagePicker.PickPhotoAsync();
+				ParseFile temp = new ParseFile("photo.jpg", ImageToBinary(robotImage.Path));
+				data.Add("robotImage.jpg", temp);
+				data.SaveAsync();
+			}
+			catch{
+			}
+		}
+		*/
 	}
 }
