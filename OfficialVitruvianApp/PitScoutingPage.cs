@@ -23,7 +23,6 @@ namespace OfficialVitruvianApp
 			ScrollView teamList = new ScrollView ();
 			teamList.HorizontalOptions = LayoutOptions.CenterAndExpand;
 			teamList.Content = pitStack;
-			UpdateTeamList();
 			this.Appearing += (object sender, EventArgs e) => {
 				UpdateTeamList();
 			};
@@ -59,7 +58,6 @@ namespace OfficialVitruvianApp
 			};
 
 			//Page Layout
-
 			StackLayout navigationBtns = new StackLayout () {
 				HorizontalOptions = LayoutOptions.CenterAndExpand,
 				Orientation = StackOrientation.Horizontal,
