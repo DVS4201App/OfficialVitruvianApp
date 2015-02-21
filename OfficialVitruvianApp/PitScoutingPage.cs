@@ -71,6 +71,7 @@ namespace OfficialVitruvianApp
 			};
 
 			this.Content = new StackLayout () {
+				//Padding = new Thickness(0,20,0,0), //How to avoid padding issues once phone reboots?
 				VerticalOptions = LayoutOptions.FillAndExpand,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 
@@ -96,13 +97,16 @@ namespace OfficialVitruvianApp
 
 		async Task UpdateTeamList(){
 			ParseQuery<ParseObject> query = ParseObject.GetQuery("TeamData");
-			var allTeams = await query.FindAsync();
+			ParseQuery<ParseObject> sorted = query.OrderBy("teamNumber");
+
+			var allTeams = await sorted.FindAsync();
 			pitStack.Children.Clear();
 			foreach (ParseObject obj in allTeams) {
 				await obj.FetchAsync ();
 				TeamListCell cell = new TeamListCell ();
 				cell.teamName.Text = "Team " + obj["teamNumber"];
 				pitStack.Children.Add (cell);
+
 				TapGestureRecognizer tap = new TapGestureRecognizer ();
 				tap.Tapped += (object sender, EventArgs e) => {
 					Navigation.PushModalAsync (new AddPitTeam (obj));

@@ -2,15 +2,16 @@ Overall:
 	-Update Solution for 2015 game (remove/repurpose obsolete pages) 
 
 	How To:
-	-Upload Images using Parse and display it in the app/Upload images to parse
+	-Upload Images to Parse
 	-Organize data on Parse
 
+***********************************************************************************************
 LoginPage:
 	Bugs/Issues:
 	-For some reason, trying to log in on my emulator gives the following error(Jonathan Dao):  
 		"Error - Unknown: Argument cannot be null. Parameter name: cancel"
 
-
+***********************************************************************************************
 PitScoutingPage:
 	How To: 
  	-Sort by team number?
@@ -24,15 +25,16 @@ PitScoutingPage:
 	-Resize an image to fit into the grid/use thumbnails
 
 	Bugs/Issues:
-	-does not completely fill the page horizontally (minor)
+	-does not completely fill the page horizontally (minor issue)
+		*For AddPitScout, Images change the horizontal fill based on their size/aspect ratio
 
-
+***********************************************************************************************
 MatchScouting:
 How To:
 
 Bugs/Issues:
 
-
+***********************************************************************************************
 RobotInfoPage:
 How To:
 

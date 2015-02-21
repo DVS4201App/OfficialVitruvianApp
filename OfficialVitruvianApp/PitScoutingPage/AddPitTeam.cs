@@ -17,6 +17,7 @@ namespace OfficialVitruvianApp
 		public AddPitTeam (ParseObject teamData)
 		{
 			Grid grid = new Grid () {
+				//Padding = new Thickness(0,20,0,0), 
 				VerticalOptions = LayoutOptions.FillAndExpand,
 				HorizontalOptions = LayoutOptions.CenterAndExpand,
 
@@ -36,16 +37,19 @@ namespace OfficialVitruvianApp
 			//picObj.Add ("imageFile", imageFile);
 			//picObj.SaveAsync();
 
+
 			var imageTap = new TapGestureRecognizer ();
 			imageTap.Tapped += (s, e) => {
 				Console.WriteLine("Tapped");
-				if(teamData ["robotImage"] != null) {
+				OpenPicker();
+				/*
+				if(teamData["robotImage"] != null) {
 					//Navigation.PushModalAsync(new RobotImagePage(teamData));
 				} else {
-					//Upload/Take Picture
-				}
+					OpenPicker();
+				}*/
 			};
-				
+
 
 			Image robotImage = new Image ();
 			try {
@@ -61,7 +65,6 @@ namespace OfficialVitruvianApp
 				} else {}
 			}
 			catch {
-				Console.WriteLine("Showing Placeholder Image");
 				robotImage.Source = "Placeholder_image_placeholder.png";
 			}
 			robotImage.Aspect = Aspect.AspectFit; //Need better way to scale an image while keeping aspect ratio, but not overflowing everything else
@@ -155,7 +158,7 @@ namespace OfficialVitruvianApp
 
 			Button updateBtn = new Button(){Text = "Update"};
 			updateBtn.Clicked += (object sender, EventArgs e) => {
-				//data ["teamImage"] = ???;
+				//data ["robotImage"] = new ParseFile(data["teamNumber"].ToString()+"1.jpg", ImageToBinary(test)); //???
 				data ["teamNumber"] = int.Parse(teamNumber.Text);
 				data ["teamName"] = teamName.Text;
 				data ["driveType"] = drivePicker.Title;
@@ -210,18 +213,20 @@ namespace OfficialVitruvianApp
 			return buffer;
 		}
 
-		/*
 		async void OpenPicker(){
-			MediaPicker imagePicker = new MediaPicker(this);
+			MediaPicker imagePicker = new MediaPicker(Forms.Context);
 			try{
-				MediaFile robotImage = await imagePicker.PickPhotoAsync();
-				ParseFile temp = new ParseFile("photo.jpg", ImageToBinary(robotImage.Path));
-				data.Add("robotImage.jpg", temp);
+				Console.WriteLine(".25: ");
+				MediaFile robotImagePath = await imagePicker.PickPhotoAsync();
+				Console.WriteLine(".5: ");
+				ParseFile temp = new ParseFile(data["teamNumber"].ToString()+"1.jpg", ImageToBinary(robotImagePath.Path));
+				data.Add("robotImage", temp);
+
 				data.SaveAsync();
 			}
 			catch{
+				Console.WriteLine ("Error");
 			}
 		}
-		*/
 	}
 }
