@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Xamarin.Media;
 using System.IO;
+
 namespace OfficialVitruvianApp
 {
 	public class AddPitTeam:ContentPage
@@ -13,6 +14,8 @@ namespace OfficialVitruvianApp
 
 		enum DriveType{None, Tank, Mechanum, Swerve, Omni, Slide, Holonomic, Other};
 		enum ToteOrientation{None, Horizontal, Vertical, Both};
+		enum CanOrientation{None, Upright, Tipped, Both};
+		enum Choice{No, Yes};
 
 		public AddPitTeam (ParseObject teamData)
 		{
@@ -49,19 +52,21 @@ namespace OfficialVitruvianApp
 					OpenPicker();
 				}*/
 			};
+				
+			Image robotImage = new Image();
 
-
-			Image robotImage = new Image ();
 			try {
 				if (teamData ["robotImage"] != null) {
 					ParseFile robotImageURL = (ParseFile)teamData ["robotImage"]; //Gets the image from parse and converts it to ParseFile
-
+					robotImage.Source = "I"+teamData["teamNumber"]+".jpg"; //Must scale down images manually before upload, & all images must be .jpg
 					//How to write this so caching actually works?
+					/*
 					robotImage.Source = new UriImageSource{
 						Uri = robotImageURL.Url,
 						CachingEnabled = true,
-						CacheValidity = new TimeSpan(4,0,0,0) //Caches Images onto your decvice for 4 days
+						CacheValidity = new TimeSpan(7,0,0,0) //Caches Images onto your device for a week
 					};
+					*/
 				} else {}
 			}
 			catch {
@@ -123,29 +128,121 @@ namespace OfficialVitruvianApp
 				drivePicker.Title = stringValue;
 			};
 					
-			Label pickupOrientationLabel = new Label () {
+			Label totePickupOrientationLabel = new Label () {
 				Text = "Tote Pickup Orentation:"
 			};
 
-			Picker orientationPicker = new Picker ();
+			Picker toteOrientationPicker = new Picker ();
 			try {
 				if (teamData ["toteOrientation"] != null) {
-					orientationPicker.Title = teamData ["toteOrientation"].ToString();
+					toteOrientationPicker.Title = teamData ["toteOrientation"].ToString();
 				} else {} 
 			} catch {
-				orientationPicker.Title = "[Select Tote Pickup Orientation]";
+				toteOrientationPicker.Title = "[Select Tote Orientation]";
 			}
 
 			for(ToteOrientation type=ToteOrientation.None; type<=ToteOrientation.Both; type++){
 				string stringValue = type.ToString();
-				orientationPicker.Items.Add(stringValue);
+				toteOrientationPicker.Items.Add(stringValue);
 			}
 
-			orientationPicker.SelectedIndexChanged += (sender, args) => {
-				ToteOrientation type = (ToteOrientation)orientationPicker.SelectedIndex;
+			toteOrientationPicker.SelectedIndexChanged += (sender, args) => {
+				ToteOrientation type = (ToteOrientation)toteOrientationPicker.SelectedIndex;
 				string stringValue = type.ToString();
-				orientationPicker.Title = stringValue;
+				toteOrientationPicker.Title = stringValue;
 			};
+
+			Label canPickupOrientationLabel = new Label () {
+				Text = "Can Pickup Orentation:"
+			};
+
+			Picker canOrientationPicker = new Picker ();
+			try {
+				if (teamData ["canOrientation"] != null) {
+					canOrientationPicker.Title = teamData ["canOrientation"].ToString();
+				} else {} 
+			} catch {
+				canOrientationPicker.Title = "[Select Can Orientation]";
+			}
+
+			for(CanOrientation type=CanOrientation.None; type<=CanOrientation.Both; type++){
+				string stringValue = type.ToString();
+				canOrientationPicker.Items.Add(stringValue);
+			}
+
+			canOrientationPicker.SelectedIndexChanged += (sender, args) => {
+				CanOrientation type = (CanOrientation)canOrientationPicker.SelectedIndex;
+				string stringValue = type.ToString();
+				canOrientationPicker.Title = stringValue;
+			};
+
+			Label autoStrategyLabel = new Label () {
+				Text = "Auto Strategy:"
+			};
+
+			Entry autoStrategy = new Entry ();
+			try {
+				if (teamData ["autoStrategy"] != null) {
+					autoStrategy.Text = teamData ["autoStrategy"].ToString();
+				} else {} 
+			} catch {
+				autoStrategy.Placeholder = "[Enter Auto Strategy]";
+			}
+
+			Label autoToteLabel = new Label () {
+				Text = "Can you push a tote in Auto?:"
+			};
+
+			Picker autoTotePicker = new Picker ();
+			try {
+				if (teamData ["autoTote"] != null) {
+					autoTotePicker.Title = teamData ["autoTote"].ToString();
+				} else {} 
+			} catch {
+				autoTotePicker.Title = "[Select Option]";
+			}
+
+			for(Choice type=Choice.No; type<=Choice.Yes; type++){
+				string stringValue = type.ToString();
+				autoTotePicker.Items.Add(stringValue);
+			}
+
+			autoTotePicker.SelectedIndexChanged += (sender, args) => {
+				Choice type = (Choice)autoTotePicker.SelectedIndex;
+				string stringValue = type.ToString();
+				autoTotePicker.Title = stringValue;
+			};
+
+			Label coopertitionTotesLabel= new Label () {
+				Text = "Coopertition Totes:"
+			};
+
+			Entry coopertitionTotes = new Entry ();
+			try {
+				if (teamData ["coopertitionTotes"] != null) {
+					coopertitionTotes.Text = teamData ["coopertitionTotes"].ToString();
+				} else {} 
+			} catch {
+				coopertitionTotes.Placeholder = "[Number of Coopertition Totes]";
+			}
+			coopertitionTotes.Keyboard = Keyboard.Numeric;
+
+			Label notesLabel = new Label () {
+				Text = "Additional Notes:"
+			};
+
+			//int test = teamData["pitScoutStatus"].ToString();
+
+			Editor notes = new Editor ();
+			try {
+				if (teamData ["notes"] != null) {
+					notes.Text = teamData ["notes"].ToString();
+				} else {} 
+			} catch {
+				//notes.Text = test.ToString();
+				notes.Text = "[Add notes]";
+			}
+			notes.HeightRequest = 100;
 
 			data = teamData;
 
@@ -158,13 +255,33 @@ namespace OfficialVitruvianApp
 
 			Button updateBtn = new Button(){Text = "Update"};
 			updateBtn.Clicked += (object sender, EventArgs e) => {
-				//data ["robotImage"] = new ParseFile(data["teamNumber"].ToString()+"1.jpg", ImageToBinary(test)); //???
+				//data ["robotImage"] = new ParseFile(robotImage);
 				data ["teamNumber"] = int.Parse(teamNumber.Text);
 				data ["teamName"] = teamName.Text;
-				data ["driveType"] = drivePicker.Title;
-				data ["toteOrientation"] = orientationPicker.Title;
+				if(drivePicker.Title != "[Select Drive Type]")
+					data ["driveType"] = drivePicker.Title;
+				if(toteOrientationPicker.Title != "[Select Tote Orientation]")
+					data ["toteOrientation"] = toteOrientationPicker.Title;
+				if(canOrientationPicker.Title != "[Select Can Orientation]")
+					data ["canOrientation"] = canOrientationPicker.Title;
+				if(autoStrategy.Text != "[Enter Auto Strategy]")
+					data ["autoStrategy"] = autoStrategy.Text;
+				if(autoTotePicker.Title != "[Select Option]")
+					data ["autoTote"] = autoTotePicker.Title;
+				if(coopertitionTotes.ToString() != "[Number of Coopertition Totes]")
+					data ["coopertitionTotes"] = Convert.ToInt32(coopertitionTotes.Text);
+				data ["notes"] = notes.Text;
 				SaveData ();
+				if(data ["driveType"].ToString () != null && data ["toteOrientation"].ToString () != null && data ["canOrientation"].ToString () != null && data ["autoStrategy"].ToString () != null && data ["autoTote"].ToString () != null && data ["coopertitionTotes"].ToString () != null) {
+					data["pitScoutStatus"]=0;
+				} else {
+					data["pitScoutStatus"]=255;
+				}
+				SaveData();
 			};
+
+			Label keyboardPadding = new Label ();
+			keyboardPadding.HeightRequest = 300;
 
 			StackLayout side = new StackLayout () {
 				VerticalOptions = LayoutOptions.FillAndExpand,
@@ -184,10 +301,21 @@ namespace OfficialVitruvianApp
 				Children = {
 					driveTypeLabel,
 					drivePicker,
-					pickupOrientationLabel,
-					orientationPicker,
+					totePickupOrientationLabel,
+					toteOrientationPicker,
+					canPickupOrientationLabel,
+					canOrientationPicker,
+					autoStrategyLabel,
+					autoStrategy,
+					autoToteLabel,
+					autoTotePicker,
+					coopertitionTotesLabel,
+					coopertitionTotes,
+					notesLabel,
+					notes,
 					backBtn,
-					updateBtn
+					updateBtn,
+					keyboardPadding
 				}
 			};
 
@@ -195,7 +323,12 @@ namespace OfficialVitruvianApp
 			grid.Children.Add (side, 1, 0);
 			grid.Children.Add (bottom, 0, 2, 1, 2);
 
-			this.Content = grid;
+			this.Content = new ScrollView {
+				HorizontalOptions = LayoutOptions.FillAndExpand,
+				VerticalOptions = LayoutOptions.FillAndExpand,
+
+				Content = grid
+			};
 		}
 		async void SaveData(){
 			Console.WriteLine ("Saving...");
@@ -220,9 +353,9 @@ namespace OfficialVitruvianApp
 				MediaFile robotImagePath = await imagePicker.PickPhotoAsync();
 				Console.WriteLine(".5: ");
 				ParseFile temp = new ParseFile(data["teamNumber"].ToString()+"1.jpg", ImageToBinary(robotImagePath.Path));
-				data.Add("robotImage", temp);
+				data["robotImage"] = temp;
 
-				data.SaveAsync();
+				SaveData();
 			}
 			catch{
 				Console.WriteLine ("Error");

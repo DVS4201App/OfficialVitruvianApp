@@ -42,6 +42,25 @@ namespace OfficialVitruvianApp
 				Navigation.PushModalAsync (new RobotInfoPage());
 			};
 
+			//Analytics Tab Navigation
+			/*
+			Button analyticsBtn = new Button ();
+			analyticsBtn.Text = "Data Analyics";
+			analyticsBtn.TextColor = Color.Green;
+			analyticsBtn.BackgroundColor = Color.Black;
+			analyticsBtn.Clicked += (object sender, EventArgs e) => {
+				Navigation.PushModalAsync (new AnalyticsPage());
+			};
+			*/
+			//Alliance Pick
+			Button alliancePickBtn = new Button ();
+			alliancePickBtn.Text = "Alliance Pick";
+			alliancePickBtn.TextColor = Color.Green;
+			alliancePickBtn.BackgroundColor = Color.Black;
+			alliancePickBtn.Clicked += (object sender, EventArgs e) => {
+				Navigation.PushModalAsync (new AlliancePick());
+			};
+
 			//Back Button Navigation
 			Button logoutBtn = new Button ();
 			logoutBtn.Text = "Logout";
@@ -60,7 +79,8 @@ namespace OfficialVitruvianApp
 					infoBtn,
 					pitBtn,
 					matchBtn,
-					pitBtn,
+					//analyticsBtn,
+					alliancePickBtn,
 					logoutBtn
 				}
 			};

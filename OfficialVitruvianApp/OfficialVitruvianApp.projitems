@@ -28,11 +28,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)RobotInfo\AddTeamPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RobotInfo\ViewTeamPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RobotInfoEditPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MatchScouting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PitScoutingPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PitScoutingPage\AddPitTeam.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RobotInfoPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PitScoutingPage\RobotImagePage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AnalyticsPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AlliancePick.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)SampeRobotsCode\" />
@@ -46,5 +47,6 @@
     <None Include="$(MSBuildThisFileDirectory)SampeRobotsCode\Robots.shproj" />
     <None Include="$(MSBuildThisFileDirectory)ToDo List.txt" />
     <None Include="$(MSBuildThisFileDirectory)Images\Placeholder_image_placeholder.png" />
+    <None Include="$(MSBuildThisFileDirectory)TabbedAnalyticsPage.cs" />
   </ItemGroup>
 </Project>

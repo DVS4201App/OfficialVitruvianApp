@@ -9,7 +9,13 @@ namespace OfficialVitruvianApp
 		Entry username, password;
 
 		async void LoginBtn (object sender, EventArgs ea){
+			//Bypass
+			Navigation.PushModalAsync (new MainMenuPage());
+
+			//Error - Unknown: Argument cannot be null. Parameter name: cancel
+			/*
 			try{
+
 				await ParseUser.LogInAsync (username.Text, password.Text);
 				DisplayAlert("Successful Login", "Let's go", "Ok", "");
 				Navigation.PushModalAsync (new MainMenuPage());
@@ -18,6 +24,7 @@ namespace OfficialVitruvianApp
 				DisplayAlert ("Error", "Unknown: " + e.Message, "OK");
 				Console.WriteLine (e.ToString());
 			}
+			*/
 		}
 
 		async void CreateAccountBtn(object sender, EventArgs ea){

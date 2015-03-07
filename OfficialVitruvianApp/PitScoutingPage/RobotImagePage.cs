@@ -47,6 +47,7 @@ namespace OfficialVitruvianApp
 			};
 
 			this.Content = new StackLayout(){
+				Padding = new Thickness(0,10,0,0),
 				HorizontalOptions = LayoutOptions.CenterAndExpand,
 				VerticalOptions = LayoutOptions.CenterAndExpand,
 

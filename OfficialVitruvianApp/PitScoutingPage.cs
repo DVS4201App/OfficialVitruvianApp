@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Parse;
+using Xamarin;
 using System.Threading.Tasks;
 
 namespace OfficialVitruvianApp
@@ -105,6 +106,16 @@ namespace OfficialVitruvianApp
 				await obj.FetchAsync ();
 				TeamListCell cell = new TeamListCell ();
 				cell.teamName.Text = "Team " + obj["teamNumber"];
+				cell.teamName.TextColor = Color.FromRgb(Convert.ToInt32(obj["pitScoutStatus"].ToString()), 255, Convert.ToInt32(obj["pitScoutStatus"].ToString()));
+				/*
+				if (obj ["driveType"].ToString () && obj ["toteOrientation"].ToString () && obj["canOrientation"].ToString () && obj ["autoStrategy"].ToString () && obj ["autoTote"].ToString () && obj ["coopertitionTotes"].ToString () != null) {
+					cell.teamName.TextColor = Color.Green;
+				} else if (obj ["driveType"].ToString () != null || obj ["toteOrientation"].ToString () != null || obj ["canOrientation"].ToString () != null || obj ["autoStrategy"].ToString () != null || obj ["autoTote"].ToString () != null || obj ["coopertitionTotes"].ToString () != null) {
+					cell.teamName.TextColor = Color.Yellow;
+				} else {
+					cell.teamName.TextColor = Color.White;
+				}
+				*/
 				pitStack.Children.Add (cell);
 
 				TapGestureRecognizer tap = new TapGestureRecognizer ();
