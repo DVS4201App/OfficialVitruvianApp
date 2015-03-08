@@ -34,6 +34,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)PitScoutingPage\RobotImagePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AnalyticsPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AlliancePick.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Match_Scouting_Auton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Match_Scouting_Teleop.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)SampeRobotsCode\" />
