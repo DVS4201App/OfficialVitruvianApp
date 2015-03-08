@@ -24,13 +24,13 @@ namespace OfficialVitruvianApp
 				Navigation.PushModalAsync (new PitScoutingPage ());
 			};
 
-			//Scouting Tab Navigation
+			//Match Scouting Tab Navigation
 			Button matchBtn = new Button ();
 			matchBtn.Text = "Match Scouting";
 			matchBtn.TextColor = Color.Green;
 			matchBtn.BackgroundColor = Color.Black;
 			matchBtn.Clicked += (object sender, EventArgs e) => {
-				Navigation.PushModalAsync (new CompetitionSelectPage ());
+				Navigation.PushModalAsync (new PreMatchDataPage ());
 			};
 
 			//Robot Info Tab Navigation

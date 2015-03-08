@@ -73,7 +73,7 @@ namespace OfficialVitruvianApp
 				robotImage.Source = "Placeholder_image_placeholder.png";
 			}
 			robotImage.Aspect = Aspect.AspectFit; //Need better way to scale an image while keeping aspect ratio, but not overflowing everything else
-			robotImage.GestureRecognizers.Add (imageTap);
+			//robotImage.GestureRecognizers.Add (imageTap);
 
 			Label teamNumberLabel = new Label(){
 				Text = "Team Number:"

@@ -107,17 +107,15 @@ namespace OfficialVitruvianApp
 					cell.teamName.TextColor = Color.White;
 				}
 
-				data = obj;
-
 				TapGestureRecognizer tap = new TapGestureRecognizer ();
 				tap.Tapped += (object sender, EventArgs e) => {
 					if(Convert.ToBoolean(obj["pickSelect"]) == false){
 						cell.teamName.TextColor = Color.Red;
-						obj["pickSelect"] = false;
+						data["pickSelect"] = false;
 						SaveData();
 					} else{
 						cell.teamName.TextColor = Color.White;
-						obj["pickSelect"] = true;
+						data["pickSelect"] = true;
 						SaveData();
 					}
 				};
