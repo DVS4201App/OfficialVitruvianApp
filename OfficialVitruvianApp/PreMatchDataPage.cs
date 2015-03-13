@@ -41,7 +41,7 @@ namespace OfficialVitruvianApp
 				MatchData.Add("matchNo", Convert.ToInt32(matchNo.Text));
 				SaveData();
 				Console.WriteLine(MatchData["team_Match"].ToString());
-				Navigation.PushModalAsync(new matchTest(MatchData));
+				Navigation.PushModalAsync(new Match_Scouting_Auton(MatchData));
 			};
 
 

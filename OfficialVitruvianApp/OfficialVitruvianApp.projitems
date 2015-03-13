@@ -35,7 +35,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)AnalyticsPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AlliancePick.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PreMatchDataPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)matchTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Match_Scouting_Auton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Match_Scouting_Teleop.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostMatch_Scouting.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)SampeRobotsCode\" />
@@ -50,7 +52,6 @@
     <None Include="$(MSBuildThisFileDirectory)ToDo List.txt" />
     <None Include="$(MSBuildThisFileDirectory)Images\Placeholder_image_placeholder.png" />
     <None Include="$(MSBuildThisFileDirectory)TabbedAnalyticsPage.cs" />
-    <None Include="$(MSBuildThisFileDirectory)Match_Scouting_Auton.cs" />
-    <None Include="$(MSBuildThisFileDirectory)Match_Scouting_Teleop.cs" />
+    <None Include="$(MSBuildThisFileDirectory)matchTest.cs" />
   </ItemGroup>
 </Project>
