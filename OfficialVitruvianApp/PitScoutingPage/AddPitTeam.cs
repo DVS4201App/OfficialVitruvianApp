@@ -12,7 +12,7 @@ namespace OfficialVitruvianApp
 	{
 		ParseObject data;
 
-		enum DriveType{None, Tank, Mechanum, Swerve, Omni, Slide, Holonomic, Other};
+		enum DriveType{None, Tank, Mechanum, Swerve, Omni, Slide, Holonomic, West_Coast, Other};
 		enum ToteOrientation{None, Horizontal, Vertical, Both};
 		enum CanOrientation{None, Upright, Tipped, Both};
 		enum Choice{No, Yes};
@@ -45,12 +45,12 @@ namespace OfficialVitruvianApp
 			imageTap.Tapped += (s, e) => {
 				Console.WriteLine("Tapped");
 				OpenPicker();
-				/*
+
 				if(teamData["robotImage"] != null) {
 					//Navigation.PushModalAsync(new RobotImagePage(teamData));
 				} else {
 					OpenPicker();
-				}*/
+				}
 			};
 				
 			Image robotImage = new Image();
@@ -58,15 +58,14 @@ namespace OfficialVitruvianApp
 			try {
 				if (teamData ["robotImage"] != null) {
 					ParseFile robotImageURL = (ParseFile)teamData ["robotImage"]; //Gets the image from parse and converts it to ParseFile
-					robotImage.Source = "I"+teamData["teamNumber"]+".jpg"; //Must scale down images manually before upload, & all images must be .jpg
+					//robotImage.Source = "I"+teamData["teamNumber"]+".jpg"; //Must scale down images manually before upload, & all images must be .jpg
 					//How to write this so caching actually works?
-					/*
+
 					robotImage.Source = new UriImageSource{
 						Uri = robotImageURL.Url,
 						CachingEnabled = true,
 						CacheValidity = new TimeSpan(7,0,0,0) //Caches Images onto your device for a week
 					};
-					*/
 				} else {}
 			}
 			catch {
@@ -104,6 +103,22 @@ namespace OfficialVitruvianApp
 				teamName.Placeholder = "[Enter Team Name]";
 			}
 
+			Label robotWeightLabel = new Label(){
+				Text = "RobotWeight:"
+			};
+
+			Entry robotWeight = new Entry (){
+				Keyboard = Keyboard.Numeric
+			};
+			try {
+				if (teamData ["robotWeight"] != null) {
+					robotWeight.Text = teamData ["robotWeight"].ToString();
+				} else {}
+			}
+			catch {
+				robotWeight.Placeholder = "[Enter robot weight]";
+			}
+				
 			Label driveTypeLabel = new Label () {
 				Text = "Drive Type:"
 			};
@@ -189,6 +204,19 @@ namespace OfficialVitruvianApp
 				autoStrategy.Placeholder = "[Enter Auto Strategy]";
 			}
 
+			Label teleOpStrategyLabel = new Label () {
+				Text = "TeleOp Strategy:"
+			};
+
+			Entry teleOpStrategy = new Entry ();
+			try {
+				if (teamData ["teleOpStrategy"] != null) {
+					teleOpStrategy.Text = teamData ["teleOpStrategy"].ToString();
+				} else {} 
+			} catch {
+				teleOpStrategy.Placeholder = "[Enter TeleOp Strategy]";
+			}
+				
 			Label autoToteLabel = new Label () {
 				Text = "Can you push a tote in Auto?:"
 			};
@@ -258,6 +286,8 @@ namespace OfficialVitruvianApp
 				//data ["robotImage"] = new ParseFile(robotImage);
 				data ["teamNumber"] = int.Parse(teamNumber.Text);
 				data ["teamName"] = teamName.Text;
+				if(robotWeight.Text != "[Enter robot weight]")
+					data ["robotWeight"] = robotWeight.Text;
 				if(drivePicker.Title != "[Select Drive Type]")
 					data ["driveType"] = drivePicker.Title;
 				if(toteOrientationPicker.Title != "[Select Tote Orientation]")
@@ -266,13 +296,15 @@ namespace OfficialVitruvianApp
 					data ["canOrientation"] = canOrientationPicker.Title;
 				if(autoStrategy.Text != "[Enter Auto Strategy]")
 					data ["autoStrategy"] = autoStrategy.Text;
+				if(teleOpStrategy.Text != "[Enter TeleOp Strategy]")
+					data ["teleOpStrategy"] = teleOpStrategy.Text;
 				if(autoTotePicker.Title != "[Select Option]")
 					data ["autoTote"] = autoTotePicker.Title;
 				if(coopertitionTotes.ToString() != "[Number of Coopertition Totes]")
 					data ["coopertitionTotes"] = Convert.ToInt32(coopertitionTotes.Text);
 				data ["notes"] = notes.Text;
 				SaveData ();
-				if(data ["driveType"].ToString () != null && data ["toteOrientation"].ToString () != null && data ["canOrientation"].ToString () != null && data ["autoStrategy"].ToString () != null && data ["autoTote"].ToString () != null && data ["coopertitionTotes"].ToString () != null) {
+				if(data ["robotWeight"].ToString () != null && data ["driveType"].ToString () != null && data ["toteOrientation"].ToString () != null && data ["canOrientation"].ToString () != null && data ["autoStrategy"].ToString () != null && data ["teleOpStrategy"].ToString () != null && data ["autoTote"].ToString () != null && data ["coopertitionTotes"].ToString () != null) {
 					data["pitScoutStatus"]=0;
 				} else {
 					data["pitScoutStatus"]=255;
@@ -299,6 +331,8 @@ namespace OfficialVitruvianApp
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 
 				Children = {
+					robotWeightLabel,
+					robotWeight,
 					driveTypeLabel,
 					drivePicker,
 					totePickupOrientationLabel,
@@ -309,6 +343,8 @@ namespace OfficialVitruvianApp
 					autoStrategy,
 					autoToteLabel,
 					autoTotePicker,
+					teleOpStrategyLabel,
+					teleOpStrategy,
 					coopertitionTotesLabel,
 					coopertitionTotes,
 					notesLabel,

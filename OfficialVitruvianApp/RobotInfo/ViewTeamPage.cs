@@ -71,44 +71,148 @@ namespace OfficialVitruvianApp
 			}
 			teamName.FontSize = (24);
 
-			Label teamType = new Label ();
+			Label robotWeightLabel = new Label {
+				Text = "Robot Weight:",
+				TextColor = Color.Green,
+				FontSize = 14
+			};
+
+			Label robotWeight = new Label ();
 			try {
-				if (teamData ["teamType"] != null) {
-					teamType.Text = "Type: " + teamData ["teamType"].ToString();
+				if (teamData ["robotWeight"] != null) {
+					robotWeight.Text = teamData ["robotWeight"].ToString();
 				} else {}
 			}
 			catch {
-				teamType.Text = "Team Type: <No Team Type>";
+				robotWeight.Text = "<No Data Recorded>";
 			}
+
+			Label driveTypeLabel = new Label {
+				Text = "Drive Type:",
+				TextColor = Color.Green,
+				FontSize = 14
+			};
 
 			Label driveType = new Label ();
 			try {
 				if (teamData ["driveType"] != null) {
-					driveType.Text = "Drive Type: " + teamData ["driveType"].ToString();
+					driveType.Text = teamData ["driveType"].ToString();
 				} else {}
 			}
 			catch {
-				driveType.Text = "Drive Type: <No Drive Type>";
+				driveType.Text = "<No Data Recorded";
 			}
+
+			Label toteOrientationLabel = new Label {
+				Text = "Tote Pickup Orientation:",
+				TextColor = Color.Green,
+				FontSize = 14
+			};
 				
 			Label toteOrientation = new Label ();
 			try {
 				if (teamData ["toteOrientation"] != null) {
-					toteOrientation.Text = "Tote Orientation: " + teamData ["toteOrientation"].ToString();
+					toteOrientation.Text = teamData ["toteOrientation"].ToString();
 				} else {}
 			}
 			catch {
-				toteOrientation.Text = "Tote Orientation: <No Tote Orientation>";
+				toteOrientation.Text = "<No Data Recoreded>";
 			}
+
+			Label canOrientationLabel = new Label {
+				Text = "Can Pickup Orientation:",
+				TextColor = Color.Green,
+				FontSize = 14
+			};
 
 			Label canOrientation = new Label ();
 			try {
 				if (teamData ["canOrientation"] != null) {
-					canOrientation.Text = "Can Orientation: " + teamData ["canOrientation"].ToString();
+					canOrientation.Text = teamData ["canOrientation"].ToString();
 				} else {}
 			}
 			catch {
-				canOrientation.Text = "Can Orientation: <No Can Orientation>";
+				canOrientation.Text = "<No Data Recorded>";
+			}
+
+			Label autoStrategyLabel = new Label {
+				Text = "Auto Strategy:",
+				TextColor = Color.Green,
+				FontSize = 14
+			};
+
+			Label autoStrategy = new Label ();
+			try {
+				if (teamData ["autoStrategy"] != null) {
+					autoStrategy.Text = teamData ["autoStrategy"].ToString();
+				} else {}
+			}
+			catch {
+				autoStrategy.Text = "<No Data Recorded>";
+			}
+
+			Label autoToteLabel = new Label {
+				Text = "Able to push tote in Auto?:",
+				TextColor = Color.Green,
+				FontSize = 14
+			};
+
+			Label autoTote = new Label ();
+			try {
+				if (teamData ["autoTote"] != null) {
+					autoTote.Text = teamData ["autoTote"].ToString();
+				} else {}
+			}
+			catch {
+				autoTote.Text = "<No Data Recorded>";
+			}
+
+			Label teleOpStrategyLabel = new Label {
+				Text = "TeleOp Strategy:",
+				TextColor = Color.Green,
+				FontSize = 14
+			};
+
+			Label teleOpStrategy = new Label ();
+			try {
+				if (teamData ["teleOpStrategy"] != null) {
+					teleOpStrategy.Text = teamData ["teleOpStrategy"].ToString();
+				} else {}
+			}
+			catch {
+				teleOpStrategy.Text = "<No Data Recorded>";
+			}
+
+			Label coopertitionTotesLabel = new Label {
+				Text = "Number of Co-Op Totes they can stack:",
+				TextColor = Color.Green,
+				FontSize = 14
+			};
+
+			Label coopertitionTotes = new Label ();
+			try {
+				if (teamData ["coopertitionTotes"] != null) {
+					coopertitionTotes.Text = teamData ["coopertitionTotes"].ToString();
+				} else {}
+			}
+			catch {
+				coopertitionTotes.Text = "<No Data Recorded>";
+			}
+
+			Label notesLabel = new Label {
+				Text = "Additional Notes:",
+				TextColor = Color.Green,
+				FontSize = 14
+			};
+
+			Label notes = new Label ();
+			try {
+				if (teamData ["notes"] != null) {
+					notes.Text = teamData ["notes"].ToString();
+				} else {}
+			}
+			catch {
+				notes.Text = "<No Data Recorded>";
 			}
 
 			data = teamData;
@@ -144,16 +248,28 @@ namespace OfficialVitruvianApp
 				}
 			};
 
-			ScrollView scrollView = new ScrollView ();
-			scrollView.HorizontalOptions = LayoutOptions.FillAndExpand;
-			scrollView.VerticalOptions = LayoutOptions.FillAndExpand;
-			scrollView.Content = new StackLayout () {
+
+			StackLayout info = new StackLayout () {
+				HorizontalOptions = LayoutOptions.CenterAndExpand,
+				VerticalOptions = LayoutOptions.FillAndExpand,
 
 				Children = {
-					teamType,
+					robotWeightLabel,
+					robotWeight,
+					driveTypeLabel,
 					driveType,
 					toteOrientation,
-					canOrientation
+					canOrientation,
+					autoStrategyLabel,
+					autoStrategy,
+					autoToteLabel,
+					autoTote,
+					teleOpStrategyLabel,
+					teleOpStrategy,
+					coopertitionTotesLabel,
+					coopertitionTotes,
+					notesLabel,
+					notes
 				}
 			};
 
@@ -178,10 +294,15 @@ namespace OfficialVitruvianApp
 
 			grid.Children.Add (robotImage, 0, 0);
 			grid.Children.Add (side, 1, 0);
-			grid.Children.Add (scrollView, 0, 2, 1, 2);
+			grid.Children.Add (info, 0, 2, 1, 2);
 			grid.Children.Add (bottom, 0, 2, 2, 3);
 
-			this.Content = grid;
+			this.Content = new ScrollView {
+				HorizontalOptions = LayoutOptions.CenterAndExpand,
+				VerticalOptions = LayoutOptions.FillAndExpand,
+
+				Content=grid
+			};
 		}
 	}
 }

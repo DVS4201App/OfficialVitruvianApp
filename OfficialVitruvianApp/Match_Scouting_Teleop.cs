@@ -12,7 +12,7 @@ namespace OfficialVitruvianApp
 
 		public Match_Scouting_Teleop (ParseObject MatchData)
 		{
-			int N = 999, Z = 0; //N is the maximum number of points, Z is which cycle the user is currently on.
+			int N = 99, Z = 0; //N is the maximum number of points, Z is which cycle the user is currently on.
 			int ToteButtonPushes = 0;	//Max. of 6
 			int CanButtonPushes = 0;  //Max of 1
 			int LitterButtonPushes = 0;
@@ -60,11 +60,19 @@ namespace OfficialVitruvianApp
 			Button CanButton = new Button ();  //A +Can Button for the "Stacking" cluster - need a way to make it limited to one can per cycle
 			CanButton.Text = "+ Can";
 			CanButton.Clicked += (object sender, EventArgs e) => {
-				if (CanButtonPushes < 1) {
+				if (CanButtonPushes==0) {
 					CanButtonPushes++;
+					currentCyclePoints = (ToteButtonPushes * 2) + (CanButtonPushes * ((ToteButtonPushes * 4) + (LitterButtonPushes * 6))) + (CoopertitionSetPushes*20) 
+						+ (CoopertitionStackPushes*40); 
+					ToteStackPoints.Text = Convert.ToString (currentCyclePoints.ToString ()); 
 					CanCount.Text = Convert.ToString (CanButtonPushes.ToString ()); 
-				}		
-
+				} else {
+					CanButtonPushes--;
+					currentCyclePoints = (ToteButtonPushes * 2) + (CanButtonPushes * ((ToteButtonPushes * 4) + (LitterButtonPushes * 6))) + (CoopertitionSetPushes*20) 
+						+ (CoopertitionStackPushes*40); 
+					ToteStackPoints.Text = Convert.ToString (currentCyclePoints.ToString ()); 
+					CanCount.Text = Convert.ToString (CanButtonPushes.ToString ()); 
+				}
 			};
 
 		
@@ -77,7 +85,16 @@ namespace OfficialVitruvianApp
 			LitterButton.Clicked += (object sender, EventArgs e) => {
 				if (LitterButtonPushes == 0 && CanButtonPushes == 1) {
 					LitterButtonPushes++;
-					LitterCount.Text = Convert.ToString (LitterButtonPushes.ToString ());
+					currentCyclePoints = (ToteButtonPushes * 2) + (CanButtonPushes * ((ToteButtonPushes * 4) + (LitterButtonPushes * 6))) + (CoopertitionSetPushes*20) 
+						+ (CoopertitionStackPushes*40); 
+					ToteStackPoints.Text = Convert.ToString (currentCyclePoints.ToString ()); 
+					LitterCount.Text = LitterButtonPushes.ToString ();
+				} else if(LitterButtonPushes == 1 && CanButtonPushes == 1){
+					LitterButtonPushes--;
+					currentCyclePoints = (ToteButtonPushes * 2) + (CanButtonPushes * ((ToteButtonPushes * 4) + (LitterButtonPushes * 6))) + (CoopertitionSetPushes*20) 
+						+ (CoopertitionStackPushes*40); 
+					ToteStackPoints.Text = Convert.ToString (currentCyclePoints.ToString ()); 
+					LitterCount.Text = LitterButtonPushes.ToString ();
 				}
 			};
 
@@ -93,10 +110,20 @@ namespace OfficialVitruvianApp
 			CoopertitionSet.Text = "Coopertition Set";
 			CoopertitionSet.Clicked +=(object sender, EventArgs e) =>{
 				CoopertitionStackButtonClicked = true; 
-				if (CoopertitionSetPushes == 0 && CoopertitionStackButtonClicked == false) 
-				{		CyclePoints[Z]+=20;                                           
+				if (CoopertitionSetPushes == 0) 
+				{		
+					//CyclePoints[Z]+=20;                                           
 					CoopertitionSetPushes++;                                        
 					CoopertitionSetCount.Text = CoopertitionSetPushes.ToString(); 
+					currentCyclePoints = (ToteButtonPushes * 2) + (CanButtonPushes * ((ToteButtonPushes * 4) + (LitterButtonPushes * 6))) + (CoopertitionSetPushes*20) 
+						+ (CoopertitionStackPushes*40); 
+					ToteStackPoints.Text = Convert.ToString (currentCyclePoints.ToString ()); 
+				} else {
+					CoopertitionSetPushes--;                                        
+					CoopertitionSetCount.Text = CoopertitionSetPushes.ToString(); 
+					currentCyclePoints = (ToteButtonPushes * 2) + (CanButtonPushes * ((ToteButtonPushes * 4) + (LitterButtonPushes * 6))) + (CoopertitionSetPushes*20) 
+						+ (CoopertitionStackPushes*40); 
+					ToteStackPoints.Text = Convert.ToString (currentCyclePoints.ToString ()); 
 				}
 			};
 
@@ -108,31 +135,33 @@ namespace OfficialVitruvianApp
 
 			Button CoopertitionStack = new Button();
 			CoopertitionStack.Text = "Coopertition Stack";
+
 			CoopertitionStack.Clicked +=(object sender, EventArgs e) =>{
-				if (CoopertitionSetButtonClicked == false)
+				if (CoopertitionStackPushes== 0)
 				{
 					CoopertitionStackButtonClicked = true;
-					CyclePoints[Z]+=40;
+					//CyclePoints[Z]+=40;
+					currentCyclePoints.ToString();
 					CoopertitionStackPushes++;
 					CoopertitionStackCount.Text = CoopertitionStackPushes.ToString();
+					currentCyclePoints = (ToteButtonPushes * 2) + (CanButtonPushes * ((ToteButtonPushes * 4) + (LitterButtonPushes * 6))) + (CoopertitionSetPushes*20) 
+						+ (CoopertitionStackPushes*40); 
+					ToteStackPoints.Text = Convert.ToString (currentCyclePoints.ToString ());
+				} else {
+					CoopertitionStackPushes--;
+					CoopertitionStackCount.Text = CoopertitionStackPushes.ToString();
+					currentCyclePoints = (ToteButtonPushes * 2) + (CanButtonPushes * ((ToteButtonPushes * 4) + (LitterButtonPushes * 6))) + (CoopertitionSetPushes*20) 
+						+ (CoopertitionStackPushes*40); 
+					ToteStackPoints.Text = Convert.ToString (currentCyclePoints.ToString ());
 				}
 			};
 
 	
-			Button ResetStack = new Button { 
-				Text = "Reset Count",
-				BackgroundColor = Color.Green,
-			};
 
-			ResetStack.Clicked += (object sender, EventArgs e) => {
 
-				ToteButtonPushes = 0;	//Max. of 6
-				//ToteCount.Text=ToteButtonPushes.ToString();
-				CanButtonPushes = 0;  //Max of 1
-				//CanCount.Text=CanButtonPushes.ToString();
-				LitterButtonPushes = 0;
-				//LitterCount.Text = LitterButtonPushes.ToString();
 
+			Label scoreCount = new Label () {
+				Text = totalScore.ToString ()
 			};
 
 			Label TotalScoreCount = new Label();
@@ -140,10 +169,11 @@ namespace OfficialVitruvianApp
 			ScoreResetToteStack.Text = "Score";
 			ScoreResetToteStack.Clicked += (object sender, EventArgs e)=>
 			{
-				CyclePoints[Z]+=(ToteButtonPushes*2)+(CanButtonPushes*((ToteButtonPushes*4)+(LitterButtonPushes*6)));
+				CyclePoints[Z]+=(ToteButtonPushes*2)+(CanButtonPushes*((ToteButtonPushes*4)+(LitterButtonPushes*6)))+(CoopertitionSetPushes*20)+(CoopertitionStackPushes*20);
 				//ToteStackPoints.Text = CyclePoints[Z].ToString(); 
 				totalScore+=CyclePoints[Z];
-				TotalScoreCount.Text = Convert.ToString(totalScore.ToString()); 
+				scoreCount.Text = totalScore.ToString();
+				TotalScoreCount.Text = totalScore.ToString(); 
 				Z++;
 
 
@@ -154,16 +184,42 @@ namespace OfficialVitruvianApp
 				CanCount.Text=CanButtonPushes.ToString();
 				LitterButtonPushes = 0;
 				LitterCount.Text = LitterButtonPushes.ToString();
-
+				currentCyclePoints = (ToteButtonPushes * 2) + (CanButtonPushes * ((ToteButtonPushes * 4) + (LitterButtonPushes * 6))) + (CoopertitionSetPushes*20) 
+					+ (CoopertitionStackPushes*40); 
+				ToteStackPoints.Text = Convert.ToString (currentCyclePoints.ToString ()); 
 			};
 
+			Button ResetStack = new Button { 
+				Text = "Reset Count",
+				BackgroundColor = Color.Green,
+			};
+
+			ResetStack.Clicked += (object sender, EventArgs e) => {
+
+				ToteButtonPushes = 0;	//Max. of 6
+				ToteCount.Text=ToteButtonPushes.ToString();
+				CanButtonPushes = 0;  //Max of 1
+				CanCount.Text=CanButtonPushes.ToString();
+				LitterButtonPushes = 0;
+				LitterCount.Text = LitterButtonPushes.ToString();
+				currentCyclePoints = (ToteButtonPushes * 2) + (CanButtonPushes * ((ToteButtonPushes * 4) + (LitterButtonPushes * 6))) + (CoopertitionSetPushes*20) 
+					+ (CoopertitionStackPushes*40); 
+				ToteStackPoints.Text = Convert.ToString (currentCyclePoints.ToString ()); 
+			};
 
 		
-
+			bool disableToggle = false;
 			Button Disable = new Button();
 			Disable.Text= "Robot Disabled";
+			Disable.BackgroundColor = Color.Gray;
 			Disable.Clicked += (object sender, EventArgs e) =>  {
-				Disable.BackgroundColor = Color.Yellow; 
+				if(disableToggle==false){
+					disableToggle=true;
+					Disable.BackgroundColor = Color.Yellow;
+				} else{
+					disableToggle=false;
+					Disable.BackgroundColor = Color.Gray;
+				}
 			};
 
 			data = MatchData;
@@ -183,10 +239,11 @@ namespace OfficialVitruvianApp
 
 				data ["CycleAmount"] = Z;
 				data ["TotalScore"] = Convert.ToInt32(totalScore.ToString());
-				data ["CycleData"] = CyclePoints.ToString();
+				data ["CycleData"] = CyclePoints;
+				data ["disabled"] = disableToggle;
 				SaveData();
-				Navigation.PushModalAsync(new PostMatch_Scouting(data));
-
+				Navigation.PushModalAsync(new PreMatchDataPage());
+				//Navigation.PushModalAsync(new PostMatch_Scouting(data));
 			};
 
 			Grid TeleopLayout = new Grid () {
@@ -194,7 +251,7 @@ namespace OfficialVitruvianApp
 				ColumnDefinitions = {
 					new ColumnDefinition{ Width = GridLength.Auto },
 					new ColumnDefinition{ Width = GridLength.Auto },
-					new ColumnDefinition{ Width = GridLength.Auto } 
+					//new ColumnDefinition{ Width = GridLength.Auto } 
 				},
 				RowDefinitions = {
 					new RowDefinition{ Height = GridLength.Auto},
@@ -216,7 +273,8 @@ namespace OfficialVitruvianApp
 			TeleopLayout.Children.Add (ResetStack, 0, 5);
 
 
-			TeleopLayout.Children.Add (ToteStackPoints, 1, 3, 0, 1); //Shows points gained from the Totestack
+			TeleopLayout.Children.Add (ToteStackPoints, 1, 2, 0, 1); //Shows points gained from the Totestack
+			TeleopLayout.Children.Add (scoreCount, 2, 3, 0, 1);
 			TeleopLayout.Children.Add (ToteCount, 1, 3, 1, 2); //label showing number of totes
 			TeleopLayout.Children.Add (CanCount, 1, 3, 2, 3);
 			TeleopLayout.Children.Add (LitterCount, 1, 3, 3, 4);
@@ -227,8 +285,8 @@ namespace OfficialVitruvianApp
 			TeleopLayout.Children.Add (Disable, 0, 9);
 			TeleopLayout.Children.Add (finishTeleop, 0, 1, 10, 11);
 
-			TeleopLayout.Children.Add (CoopertitionStackCount, 1, 2, 7, 8);
-			TeleopLayout.Children.Add (CoopertitionSetCount, 1, 8);
+			TeleopLayout.Children.Add (CoopertitionStackCount, 1, 3, 7, 8);
+			TeleopLayout.Children.Add (CoopertitionSetCount, 1,3, 8,9);
 		
 			this.Content = TeleopLayout;
 		}

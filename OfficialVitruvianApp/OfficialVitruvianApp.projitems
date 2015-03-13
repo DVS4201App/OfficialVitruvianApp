@@ -29,7 +29,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)RobotInfo\ViewTeamPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RobotInfoEditPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PitScoutingPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)PitScoutingPage\AddPitTeam.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RobotInfoPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PitScoutingPage\RobotImagePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AnalyticsPage.cs" />
@@ -38,6 +37,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Match_Scouting_Auton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Match_Scouting_Teleop.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PostMatch_Scouting.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PitScoutingPage\AddPitTeam.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)SampeRobotsCode\" />

@@ -12,24 +12,41 @@ namespace OfficialVitruvianApp
 
 			Label TotalPoints = new Label ();
 				
-			//Robot Set
+			int robotSetPushed = 0;
+			int toteSetPushed = 0;
+			int containerSetPushed = 0;
+			int stackedToteSetPushed = 0;
 
+			//Robot Set
 			Button RobotSet = new Button();
 			RobotSet.Text = "Robot Set";
 			RobotSet.BackgroundColor = Color.Green;
 			RobotSet.Clicked += (object sender, EventArgs e) => {
-				SumofPoints+=4;
-				TotalPoints.Text = SumofPoints.ToString();
+				if(robotSetPushed==0){
+					robotSetPushed=1;
+					SumofPoints = (robotSetPushed*4)+(containerSetPushed*8)+(toteSetPushed*6)+(stackedToteSetPushed*14);
+					TotalPoints.Text = SumofPoints.ToString();
+				} else {
+					robotSetPushed=0;
+					SumofPoints = (robotSetPushed*4)+(containerSetPushed*8)+(toteSetPushed*6)+(stackedToteSetPushed*14);
+					TotalPoints.Text = SumofPoints.ToString();
+				}
 			};
-
-
+				
 			//Tote Set
 			Button ToteSet = new Button ();
 			ToteSet.Text = "Tote Set";
 			ToteSet.BackgroundColor = Color.Green;
 			ToteSet.Clicked += (object sender, EventArgs e) => {
-				SumofPoints+=6;
-				TotalPoints.Text = SumofPoints.ToString();
+				if(toteSetPushed==0){
+					toteSetPushed=1;
+					SumofPoints = (robotSetPushed*4)+(containerSetPushed*8)+(toteSetPushed*6)+(stackedToteSetPushed*14);
+					TotalPoints.Text = SumofPoints.ToString();
+				} else {
+					toteSetPushed=0;
+					SumofPoints = (robotSetPushed*4)+(containerSetPushed*8)+(toteSetPushed*6)+(stackedToteSetPushed*14);
+					TotalPoints.Text = SumofPoints.ToString();
+				}
 			};
 
 			//Container Set
@@ -37,8 +54,15 @@ namespace OfficialVitruvianApp
 			ContainerSet.Text = "Container Set";
 			ContainerSet.BackgroundColor = Color.Green;
 			ContainerSet.Clicked += (object sender, EventArgs e) => {
-				SumofPoints+=8;
-				TotalPoints.Text = SumofPoints.ToString();
+				if(containerSetPushed==0){
+					containerSetPushed=1;
+					SumofPoints = (robotSetPushed*4)+(containerSetPushed*8)+(toteSetPushed*6)+(stackedToteSetPushed*14);
+					TotalPoints.Text = SumofPoints.ToString();
+				} else {
+					containerSetPushed=0;
+					SumofPoints = (robotSetPushed*4)+(containerSetPushed*8)+(toteSetPushed*6)+(stackedToteSetPushed*14);
+					TotalPoints.Text = SumofPoints.ToString();
+				}
 			};
 
 			//Stacked Tote Set
@@ -46,8 +70,15 @@ namespace OfficialVitruvianApp
 			StackedToteSet.Text = "Stacked Tote Set";
 			StackedToteSet.BackgroundColor = Color.Green;
 			StackedToteSet.Clicked += (object sender, EventArgs e) => {
-				SumofPoints+=20;
-				TotalPoints.Text = SumofPoints.ToString();
+				if(stackedToteSetPushed==0){
+					stackedToteSetPushed=1;
+					SumofPoints = (robotSetPushed*4)+(containerSetPushed*8)+(toteSetPushed*6)+(stackedToteSetPushed*14);
+					TotalPoints.Text = SumofPoints.ToString();
+				} else {
+					stackedToteSetPushed=0;
+					SumofPoints = (robotSetPushed*4)+(containerSetPushed*8)+(toteSetPushed*6)+(stackedToteSetPushed*14);
+					TotalPoints.Text = SumofPoints.ToString();
+				}
 			};
 
 //		
