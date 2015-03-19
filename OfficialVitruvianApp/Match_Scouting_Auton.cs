@@ -7,6 +7,8 @@ namespace OfficialVitruvianApp
 {
 	public class Match_Scouting_Auton : ContentPage
 	{
+		ParseObject data;
+
 		public Match_Scouting_Auton (ParseObject MatchData){
 			int SumofPoints = 0; 
 
@@ -24,6 +26,10 @@ namespace OfficialVitruvianApp
 			RobotSet.Clicked += (object sender, EventArgs e) => {
 				if(robotSetPushed==0){
 					robotSetPushed=1;
+					//Like Teleop, these two lines can be put into a function and then brought out since they are repeated, so everytime you need to update, you can just call the funciton after changing the values, and it will update teh displayed values.
+					//Also, consider having the button colors change if they are pressed for user feedback.
+					//Note: I assume that both the toteSet and stackedToteSet are required to make a complete tote stack (as a tote stack is essentially a tote set in a stack), so the user must press both buttons in order to make a totestack.
+					//		This is for easier math/programming on our end.
 					SumofPoints = (robotSetPushed*4)+(containerSetPushed*8)+(toteSetPushed*6)+(stackedToteSetPushed*14);
 					TotalPoints.Text = SumofPoints.ToString();
 				} else {
@@ -88,15 +94,16 @@ namespace OfficialVitruvianApp
 //			Undo.Clicked += (object sender, EventArgs e) => {
 //
 //			};
-
-
-
+			data = MatchData;
 
 			Button TeleopPage = new Button ();
 			TeleopPage.Text = "Teleop";
 			TeleopPage.BackgroundColor = Color.Yellow;
 			TeleopPage.TextColor = Color.Black;
 			TeleopPage.Clicked += (object sender, EventArgs e) => {
+				SumofPoints = (robotSetPushed*4)+(containerSetPushed*8)+(toteSetPushed*6)+(stackedToteSetPushed*14);
+				data["autoPoints"] = SumofPoints;
+				SaveData();
 				Navigation.PushModalAsync(new Match_Scouting_Teleop(MatchData)); 
 			};
 
@@ -110,6 +117,12 @@ namespace OfficialVitruvianApp
 					TeleopPage
 				}
 			};
+		}
+
+		async void SaveData(){
+			Console.WriteLine ("Saving...");
+			await data.SaveAsync ();
+			Console.WriteLine ("Done Saving");
 		}
 	}
 }

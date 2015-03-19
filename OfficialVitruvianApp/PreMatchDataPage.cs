@@ -37,6 +37,7 @@ namespace OfficialVitruvianApp
 			};
 			beginScoutBtn.Clicked += (object sender, EventArgs e) => {
 				MatchData.Add("team_Match", teamNo.Text+"-"+matchNo.Text);
+
 				MatchData.Add("teamNo", Convert.ToInt32(teamNo.Text));
 				MatchData.Add("matchNo", Convert.ToInt32(matchNo.Text));
 				SaveData();

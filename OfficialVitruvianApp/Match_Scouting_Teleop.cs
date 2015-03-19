@@ -5,6 +5,9 @@ using Parse;
 
 namespace OfficialVitruvianApp
 { 
+	/*
+	Variables should be declared here. Explanation Below
+	*/
 
 	public class Match_Scouting_Teleop : ContentPage
 	{
@@ -42,7 +45,14 @@ namespace OfficialVitruvianApp
 			ToteButton.Text = "+ Tote";
 			ToteButton.Clicked += (object sender, EventArgs e) => {
 				if (ToteButtonPushes < 6) { 
-					ToteButtonPushes++; 
+					ToteButtonPushes++;
+					/*
+					These lines are repeated a lot, they update the current score. SInce I made it in a hurry, it was copy/pasted, but ideally, it should be in a separate function, like SaveData().
+					Doing this would mean that you need to move your other variables outside of the main class function.
+					Note: So for the this function, I treat the coopertition stack/set separately (the stack doesnt depend on a set button press).
+							I don't recall why I did this initially, but it makes sense scouting in the game, as a robot will usually complete one or another (a stack usually doesn't fall down after it is completed).
+							Either way, the buttons for a set/stack were changed to be a toggle, instead of an addition, which allows the user to self-correct.
+					*/
 					currentCyclePoints = (ToteButtonPushes * 2) + (CanButtonPushes * ((ToteButtonPushes * 4) + (LitterButtonPushes * 6))) + (CoopertitionSetPushes*20) 
 						+ (CoopertitionStackPushes*40); 
 					ToteCount.Text = Convert.ToString (ToteButtonPushes.ToString ());  
@@ -169,6 +179,10 @@ namespace OfficialVitruvianApp
 			ScoreResetToteStack.Text = "Score";
 			ScoreResetToteStack.Clicked += (object sender, EventArgs e)=>
 			{
+				/*
+				scorecount was a label I created to display the 'total cumulative score' of all cycles. Technically, this is redundant, since totalScore should have the value already, but if you want to specify it as a label (to change the color/font size,etc.) then it is fine.
+				If you want to just state the total score, without the need of changing how it looks, you can put TeleopLayout.Children.Add(totalScore, int, int);
+				*/
 				CyclePoints[Z]+=(ToteButtonPushes*2)+(CanButtonPushes*((ToteButtonPushes*4)+(LitterButtonPushes*6)))+(CoopertitionSetPushes*20)+(CoopertitionStackPushes*20);
 				//ToteStackPoints.Text = CyclePoints[Z].ToString(); 
 				totalScore+=CyclePoints[Z];
@@ -213,6 +227,10 @@ namespace OfficialVitruvianApp
 			Disable.Text= "Robot Disabled";
 			Disable.BackgroundColor = Color.Gray;
 			Disable.Clicked += (object sender, EventArgs e) =>  {
+				/*
+				I made it sop that the disable button changes color when it is pressed, the color also changes to alert the user.
+				Also, in other parts that I changed, I used an {if(variiable==1)} isntead of a true/false. Either way works, it just comes down to preference
+				*/
 				if(disableToggle==false){
 					disableToggle=true;
 					Disable.BackgroundColor = Color.Yellow;
@@ -233,6 +251,9 @@ namespace OfficialVitruvianApp
 
 			finishTeleop.Clicked += (object sender, EventArgs e)=>
 			{
+				/*
+				Since the value of total score will now be updated every time a button is pressed, this for loop is probably not needed.
+				*/
 //				for(int i=0; i<Z; i++){
 //					totalScore+=CyclePoints[i];
 //				}
@@ -279,7 +300,10 @@ namespace OfficialVitruvianApp
 			TeleopLayout.Children.Add (CanCount, 1, 3, 2, 3);
 			TeleopLayout.Children.Add (LitterCount, 1, 3, 3, 4);
 			//TeleopLayout.Children.Add (TotalScoreCount, 1, 1, 0, 1); //needs debugging - argument has been thrown
-					
+
+			/*
+			If you use a Children.Add with 4 values, and then use ones with 2, keep in mind that this may affect how everything else is layed, out, so you should try to remain consisntant and have all of them with 4 variables.
+			*/
 			TeleopLayout.Children.Add (CoopertitionStack, 0, 7);
 			TeleopLayout.Children.Add (CoopertitionSet, 0, 8);
 			TeleopLayout.Children.Add (Disable, 0, 9);
