@@ -42,6 +42,15 @@ namespace OfficialVitruvianApp
 				Navigation.PushModalAsync (new RobotInfoPage());
 			};
 
+			//Team Stats
+			Button teamStatsBtn = new Button ();
+			teamStatsBtn.Text = "Team Stats";
+			teamStatsBtn.TextColor = Color.Green;
+			teamStatsBtn.BackgroundColor = Color.Black;
+			teamStatsBtn.Clicked += (object sender, EventArgs e) => {
+				Navigation.PushModalAsync (new TeamStatsPage());
+			};
+
 			//Analytics Tab Navigation
 			/*
 			Button analyticsBtn = new Button ();
@@ -79,6 +88,7 @@ namespace OfficialVitruvianApp
 					infoBtn,
 					pitBtn,
 					matchBtn,
+					teamStatsBtn,
 					//analyticsBtn,
 					alliancePickBtn,
 					logoutBtn

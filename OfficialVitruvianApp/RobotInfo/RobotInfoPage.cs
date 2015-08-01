@@ -9,14 +9,16 @@ namespace OfficialVitruvianApp
 {
 	public class RobotInfoPage : ContentPage
 	{
-		StackLayout teamStack;
+		StackLayout teamStack = new StackLayout();
 
 		public RobotInfoPage ()
 		{
 			//Page Title
 			Label title = new Label () {
 				Text = "Robot Information",
-				TextColor = Color.Green
+				FontSize =18,
+				TextColor = Color.Green,
+				BackgroundColor = Color.Black
 			};
 
 			//A button to toggle between looking at teams and adding data about teams
@@ -53,14 +55,9 @@ namespace OfficialVitruvianApp
 			backBtn.Clicked += (object sender, EventArgs e) => {
 				Navigation.PushModalAsync(new MainMenuPage());
 			};
-				
-			//Page Layout
-			teamStack = new StackLayout ();
 
 			ScrollView teamList = new ScrollView ();
 			teamList.Content = teamStack;
-
-			//UpdateTeamList();
 			this.Appearing += (object sender, EventArgs e) => {
 				UpdateTeamList();
 			};

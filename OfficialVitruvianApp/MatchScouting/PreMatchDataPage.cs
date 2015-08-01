@@ -28,7 +28,6 @@ namespace OfficialVitruvianApp
 				Placeholder = "[Enter Team No.]"
 			};
 			teamNo.Keyboard = Keyboard.Numeric;
-
 			//Start Match Scout
 			Button beginScoutBtn = new Button {
 				Text = "Begin Match",
@@ -36,13 +35,16 @@ namespace OfficialVitruvianApp
 				BackgroundColor = Color.Black
 			};
 			beginScoutBtn.Clicked += (object sender, EventArgs e) => {
-				MatchData.Add("team_Match", teamNo.Text+"-"+matchNo.Text);
-
-				MatchData.Add("teamNo", Convert.ToInt32(teamNo.Text));
-				MatchData.Add("matchNo", Convert.ToInt32(matchNo.Text));
-				SaveData();
-				Console.WriteLine(MatchData["team_Match"].ToString());
-				Navigation.PushModalAsync(new Match_Scouting_Auton(MatchData));
+				if(string.IsNullOrEmpty(matchNo.Text) || string.IsNullOrEmpty(teamNo.Text)){
+					DisplayAlert("Error", "Input both Team Number and Match Number", "Ok");
+				} else {
+					Console.WriteLine(matchNo.Text);
+					MatchData.Add("team_Match", teamNo.Text+"-"+matchNo.Text);
+					MatchData.Add("teamNo", Convert.ToInt32(teamNo.Text));
+					MatchData.Add("matchNo", Convert.ToInt32(matchNo.Text));
+					SaveData();
+					Navigation.PushModalAsync(new Match_Scouting_Auton(MatchData));
+				}
 			};
 
 

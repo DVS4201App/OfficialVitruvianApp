@@ -8,17 +8,17 @@ namespace OfficialVitruvianApp
 {
 	public class PitScoutingPage : ContentPage
 	{
-		StackLayout pitStack = new StackLayout ();
+		StackLayout pitStack = new StackLayout();
 
 		public PitScoutingPage ()
 		{
 			//Page Title
 			Label pageLabel = new Label () {
 				Text = "Pit Scouting",
+				FontSize =18,
 				TextColor = Color.Green,
 				BackgroundColor = Color.Black
 			};
-			pageLabel.FontSize = 18;
 
 			//Team List
 			ScrollView teamList = new ScrollView ();
@@ -107,15 +107,13 @@ namespace OfficialVitruvianApp
 				TeamListCell cell = new TeamListCell ();
 				cell.teamName.Text = "Team " + obj["teamNumber"];
 				cell.teamName.TextColor = Color.FromRgb(Convert.ToInt32(obj["pitScoutStatus"].ToString()), 255, Convert.ToInt32(obj["pitScoutStatus"].ToString()));
-				/*
-				if (obj ["driveType"].ToString () && obj ["toteOrientation"].ToString () && obj["canOrientation"].ToString () && obj ["autoStrategy"].ToString () && obj ["autoTote"].ToString () && obj ["coopertitionTotes"].ToString () != null) {
+
+				if (Convert.ToInt16(obj["pitScoutStatus"].ToString())==0){
 					cell.teamName.TextColor = Color.Green;
-				} else if (obj ["driveType"].ToString () != null || obj ["toteOrientation"].ToString () != null || obj ["canOrientation"].ToString () != null || obj ["autoStrategy"].ToString () != null || obj ["autoTote"].ToString () != null || obj ["coopertitionTotes"].ToString () != null) {
-					cell.teamName.TextColor = Color.Yellow;
 				} else {
 					cell.teamName.TextColor = Color.White;
 				}
-				*/
+
 				pitStack.Children.Add (cell);
 
 				TapGestureRecognizer tap = new TapGestureRecognizer ();

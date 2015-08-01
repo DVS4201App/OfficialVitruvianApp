@@ -33,31 +33,18 @@ namespace OfficialVitruvianApp
 					new ColumnDefinition{ Width = GridLength.Auto }
 				}
 			};
-					
-			//ParseObject picObj = new ParseObject("Teams");
-			//picObj.Add ("name", "robotImage");
-			//ParseFile.imageFile = new ParseFile("robotImage.jpg");
-			//picObj.Add ("imageFile", imageFile);
-			//picObj.SaveAsync();
-
 
 			var imageTap = new TapGestureRecognizer ();
 			imageTap.Tapped += (s, e) => {
 				Console.WriteLine("Tapped");
 				OpenPicker();
-
-				if(teamData["robotImage"] != null) {
-					//Navigation.PushModalAsync(new RobotImagePage(teamData));
-				} else {
-					OpenPicker();
-				}
 			};
 				
 			Image robotImage = new Image();
-
 			try {
-				if (teamData ["robotImage"] != null) {
-					ParseFile robotImageURL = (ParseFile)teamData ["robotImage"]; //Gets the image from parse and converts it to ParseFile
+				if (teamData ["robotImage"].ToString() != null) {
+					ParseFile robotImageURL = (ParseFile)teamData ["robotImage"];
+					//Gets the image from parse and converts it to ParseFile
 					//robotImage.Source = "I"+teamData["teamNumber"]+".jpg"; //Must scale down images manually before upload, & all images must be .jpg
 					//How to write this so caching actually works?
 
@@ -70,8 +57,9 @@ namespace OfficialVitruvianApp
 			}
 			catch {
 				robotImage.Source = "Placeholder_image_placeholder.png";
+				robotImage.GestureRecognizers.Add (imageTap);
 			}
-			robotImage.Aspect = Aspect.AspectFit; //Need better way to scale an image while keeping aspect ratio, but not overflowing everything else
+			//robotImage.Aspect = Aspect.AspectFit; //Need better way to scale an image while keeping aspect ratio, but not overflowing everything else
 			//robotImage.GestureRecognizers.Add (imageTap);
 
 			Label teamNumberLabel = new Label(){
@@ -116,8 +104,32 @@ namespace OfficialVitruvianApp
 				} else {}
 			}
 			catch {
-				robotWeight.Placeholder = "[Enter robot weight]";
+				robotWeight.Text = "0";
 			}
+
+			Label rampLabel = new Label () {
+				Text = "Do you need a ramp?:"
+			};
+
+			Picker rampPicker = new Picker ();
+			try {
+				if (teamData ["ramp"] != null) {
+					rampPicker.Title = teamData ["ramp"].ToString();
+				} else {} 
+			} catch {
+				rampPicker.Title = "[Select an Option]";
+			}
+			for(Choice type=Choice.No; type<=Choice.Yes; type++){
+				string stringValue = type.ToString();
+				rampPicker.Items.Add(stringValue);
+			}
+
+			rampPicker.SelectedIndexChanged += (sender, args) => {
+				Choice type = (Choice)rampPicker.SelectedIndex;
+				string stringValue = type.ToString();
+				rampPicker.Title = stringValue;
+
+			};
 				
 			Label driveTypeLabel = new Label () {
 				Text = "Drive Type:"
@@ -242,8 +254,8 @@ namespace OfficialVitruvianApp
 			};
 
 			Label coopertitionTotesLabel= new Label () {
-				Text = "Coopertition Totes:"
-			};
+				Text = "Possible Co-Op Tote Stack:"
+			}; 
 
 			Entry coopertitionTotes = new Entry ();
 			try {
@@ -251,7 +263,7 @@ namespace OfficialVitruvianApp
 					coopertitionTotes.Text = teamData ["coopertitionTotes"].ToString();
 				} else {} 
 			} catch {
-				coopertitionTotes.Placeholder = "[Number of Coopertition Totes]";
+				coopertitionTotes.Text = "0";
 			}
 			coopertitionTotes.Keyboard = Keyboard.Numeric;
 
@@ -271,7 +283,7 @@ namespace OfficialVitruvianApp
 				notes.Text = "[Add notes]";
 			}
 			notes.HeightRequest = 100;
-
+			
 			data = teamData;
 
 			Button backBtn = new Button (){
@@ -284,27 +296,46 @@ namespace OfficialVitruvianApp
 			Button updateBtn = new Button(){Text = "Update"};
 			updateBtn.Clicked += (object sender, EventArgs e) => {
 				//data ["robotImage"] = new ParseFile(robotImage);
-				data ["teamNumber"] = int.Parse(teamNumber.Text);
+				//data ["teamNumber"] = int.Parse(teamNumber.Text);
+
 				data ["teamName"] = teamName.Text;
-				if(robotWeight.Text != "[Enter robot weight]")
-					data ["robotWeight"] = robotWeight.Text;
-				if(drivePicker.Title != "[Select Drive Type]")
+				data ["robotWeight"] = Convert.ToInt32(robotWeight.Text);
+
+				if(rampPicker.Title != "[Select an Option]"){
+					data ["ramp"] = rampPicker.Title;
+				}
+				if(drivePicker.Title != "[Select Drive Type]"){
 					data ["driveType"] = drivePicker.Title;
-				if(toteOrientationPicker.Title != "[Select Tote Orientation]")
+				}
+				if(toteOrientationPicker.Title != "[Select Tote Orientation]"){
 					data ["toteOrientation"] = toteOrientationPicker.Title;
-				if(canOrientationPicker.Title != "[Select Can Orientation]")
+				}
+				if(canOrientationPicker.Title != "[Select Can Orientation]"){
 					data ["canOrientation"] = canOrientationPicker.Title;
-				if(autoStrategy.Text != "[Enter Auto Strategy]")
+				}
+				if(autoStrategy.Text != "[Enter Auto Strategy]"){
 					data ["autoStrategy"] = autoStrategy.Text;
-				if(teleOpStrategy.Text != "[Enter TeleOp Strategy]")
+				}
+				if(teleOpStrategy.Text != "[Enter TeleOp Strategy]"){
 					data ["teleOpStrategy"] = teleOpStrategy.Text;
-				if(autoTotePicker.Title != "[Select Option]")
+				}
+				if(autoTotePicker.Title != "[Select Option]"){
 					data ["autoTote"] = autoTotePicker.Title;
-				if(coopertitionTotes.ToString() != "[Number of Coopertition Totes]")
-					data ["coopertitionTotes"] = Convert.ToInt32(coopertitionTotes.Text);
+				}
+				data ["coopertitionTotes"] = Convert.ToInt32(coopertitionTotes.Text);
 				data ["notes"] = notes.Text;
-				SaveData ();
-				if(data ["robotWeight"].ToString () != null && data ["driveType"].ToString () != null && data ["toteOrientation"].ToString () != null && data ["canOrientation"].ToString () != null && data ["autoStrategy"].ToString () != null && data ["teleOpStrategy"].ToString () != null && data ["autoTote"].ToString () != null && data ["coopertitionTotes"].ToString () != null) {
+
+				SaveData (); 
+
+				if( data.ContainsKey("ramp") == 
+					data.ContainsKey("driveType") == 
+					data.ContainsKey("toteOrientation") == 
+					data.ContainsKey("canOrientation") ==
+					data.ContainsKey("autoStrategy") ==
+					data.ContainsKey("teleOpStrategy") ==
+					data.ContainsKey("autoTote") ==
+					true) 
+				{
 					data["pitScoutStatus"]=0;
 				} else {
 					data["pitScoutStatus"]=255;
@@ -333,6 +364,8 @@ namespace OfficialVitruvianApp
 				Children = {
 					robotWeightLabel,
 					robotWeight,
+					rampLabel,
+					rampPicker,
 					driveTypeLabel,
 					drivePicker,
 					totePickupOrientationLabel,
@@ -366,12 +399,6 @@ namespace OfficialVitruvianApp
 				Content = grid
 			};
 		}
-		async void SaveData(){
-			Console.WriteLine ("Saving...");
-			await data.SaveAsync ();
-			Console.WriteLine ("Done Saving");
-			Navigation.PopModalAsync ();
-		}
 
 		public byte[] ImageToBinary(string imagePath)
 		{
@@ -383,19 +410,28 @@ namespace OfficialVitruvianApp
 		}
 
 		async void OpenPicker(){
+			//It works? Don't use gallery
 			MediaPicker imagePicker = new MediaPicker(Forms.Context);
 			try{
 				Console.WriteLine(".25: ");
 				MediaFile robotImagePath = await imagePicker.PickPhotoAsync();
-				Console.WriteLine(".5: ");
-				ParseFile temp = new ParseFile(data["teamNumber"].ToString()+"1.jpg", ImageToBinary(robotImagePath.Path));
+				//Console.WriteLine(robotImagePath.Path);
+				ParseFile temp = new ParseFile(data["teamNumber"].ToString()+".jpg", ImageToBinary(robotImagePath.Path));
 				data["robotImage"] = temp;
 
 				SaveData();
+				await Navigation.PushModalAsync(new AddPitTeam(data));
 			}
 			catch{
 				Console.WriteLine ("Error");
 			}
+		}
+
+		async void SaveData(){
+			Console.WriteLine ("Saving...");
+			await data.SaveAsync ();
+			Console.WriteLine ("Done Saving");
+			await Navigation.PushModalAsync (new PitScoutingPage ());
 		}
 	}
 }

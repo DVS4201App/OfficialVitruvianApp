@@ -21,6 +21,7 @@ namespace OfficialVitruvianApp
 				RowDefinitions = {
 					new RowDefinition{ Height = new GridLength(160, GridUnitType.Absolute) },
 					new RowDefinition{ Height = GridLength.Auto },
+					new RowDefinition{ Height = GridLength.Auto },
 					new RowDefinition{ Height = new GridLength(40, GridUnitType.Star) }
 				},
 				ColumnDefinitions = {
@@ -29,12 +30,14 @@ namespace OfficialVitruvianApp
 				}
 			};
 
-			Image robotImage = new Image ();
+			Image robotImage = new Image();
 			try {
-				if (teamData ["robotImage"] != null) {
-					ParseFile robotImageURL = (ParseFile)teamData ["robotImage"]; //Gets the image from parse and converts it to ParseFile
-
+				if (teamData ["robotImage"].ToString() != null) {
+					ParseFile robotImageURL = (ParseFile)teamData ["robotImage"];
+					//Gets the image from parse and converts it to ParseFile
+					//robotImage.Source = "I"+teamData["teamNumber"]+".jpg"; //Must scale down images manually before upload, & all images must be .jpg
 					//How to write this so caching actually works?
+
 					robotImage.Source = new UriImageSource{
 						Uri = robotImageURL.Url,
 						CachingEnabled = true,
@@ -46,7 +49,7 @@ namespace OfficialVitruvianApp
 				robotImage.Source = "Placeholder_image_placeholder.png";
 			}
 			robotImage.Aspect = Aspect.AspectFit; //Need better way to scale an image while keeping aspect ratio, but not overflowing everything else
-
+			//robotImage.GestureRecognizers.Add (imageTap);
 
 			ListView teamInfo = new ListView ();
 
@@ -85,6 +88,22 @@ namespace OfficialVitruvianApp
 			}
 			catch {
 				robotWeight.Text = "<No Data Recorded>";
+			}
+
+			Label rampLabel = new Label {
+				Text = "Requires Ramp:",
+				TextColor = Color.Green,
+				FontSize = 14
+			};
+
+			Label ramp = new Label ();
+			try {
+				if (teamData ["ramp"] != null) {
+					ramp.Text = teamData ["ramp"].ToString();
+				} else {}
+			}
+			catch {
+				ramp.Text = "<No Data Recorded";
 			}
 
 			Label driveTypeLabel = new Label {
@@ -217,6 +236,17 @@ namespace OfficialVitruvianApp
 
 			data = teamData;
 
+			/*
+			Button viewStatsBtn = new Button {
+				Text = "View Stats",
+				TextColor = Color.Green,
+				BackgroundColor= Color.Black
+			};
+			viewStatsBtn.Clicked += (object sender, EventArgs e) => {
+				//Navigation.PushModalAsync(new TeamStatGenerator(Convert.ToInt32(teamData["teamNumber"].ToString())));
+			};
+			*/
+
 			//Refresh Button
 			Button refreshBtn = new Button () {
 				Text = "Refresh",
@@ -256,9 +286,13 @@ namespace OfficialVitruvianApp
 				Children = {
 					robotWeightLabel,
 					robotWeight,
+					rampLabel,
+					ramp,
 					driveTypeLabel,
 					driveType,
+					toteOrientationLabel,
 					toteOrientation,
+					canOrientationLabel,
 					canOrientation,
 					autoStrategyLabel,
 					autoStrategy,
@@ -295,7 +329,8 @@ namespace OfficialVitruvianApp
 			grid.Children.Add (robotImage, 0, 0);
 			grid.Children.Add (side, 1, 0);
 			grid.Children.Add (info, 0, 2, 1, 2);
-			grid.Children.Add (bottom, 0, 2, 2, 3);
+			//grid.Children.Add (viewStatsBtn, 0, 2, 2, 3);
+			grid.Children.Add (bottom, 0, 2, 3, 4);
 
 			this.Content = new ScrollView {
 				HorizontalOptions = LayoutOptions.CenterAndExpand,

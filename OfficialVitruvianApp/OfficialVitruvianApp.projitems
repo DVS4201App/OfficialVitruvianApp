@@ -10,34 +10,26 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SampeRobotsCode\App.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SampeRobotsCode\InterfacePage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SampeRobotsCode\MatchListPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SampeRobotsCode\RegPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SampeRobotsCode\RobotsCell.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SampeRobotsCode\WelcomePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HelpPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AdminOptionsPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CompetitionSelectPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CreateAcctPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MainMenuPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RawDataPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LoginPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\TeamListCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\MatchListCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RobotInfo\AddTeamPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RobotInfo\ViewTeamPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RobotInfoEditPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)PitScoutingPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RobotInfoPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PitScoutingPage\RobotImagePage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AnalyticsPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AlliancePick.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)PreMatchDataPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Match_Scouting_Auton.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Match_Scouting_Teleop.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)PostMatch_Scouting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PitScoutingPage\AddPitTeam.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TeamStats\TeamStatGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TeamStats\TeamStatsPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TeamStats\TeamStatsDisplay.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MatchScouting\Match_Scouting_Auton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MatchScouting\Match_Scouting_Teleop.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MatchScouting\PostMatch_Scouting.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MatchScouting\PreMatchDataPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RobotInfo\RobotInfoPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PitScoutingPage\PitScoutingPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)SampeRobotsCode\" />
@@ -45,6 +37,8 @@
     <Folder Include="$(MSBuildThisFileDirectory)RobotInfo\" />
     <Folder Include="$(MSBuildThisFileDirectory)PitScoutingPage\" />
     <Folder Include="$(MSBuildThisFileDirectory)Images\" />
+    <Folder Include="$(MSBuildThisFileDirectory)TeamStats\" />
+    <Folder Include="$(MSBuildThisFileDirectory)MatchScouting\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)SampeRobotsCode\Robots.projitems" />
@@ -52,6 +46,13 @@
     <None Include="$(MSBuildThisFileDirectory)ToDo List.txt" />
     <None Include="$(MSBuildThisFileDirectory)Images\Placeholder_image_placeholder.png" />
     <None Include="$(MSBuildThisFileDirectory)TabbedAnalyticsPage.cs" />
-    <None Include="$(MSBuildThisFileDirectory)matchTest.cs" />
+    <None Include="$(MSBuildThisFileDirectory)AnalyticsPage.cs" />
+    <None Include="$(MSBuildThisFileDirectory)SampeRobotsCode\App.cs" />
+    <None Include="$(MSBuildThisFileDirectory)SampeRobotsCode\InterfacePage.cs" />
+    <None Include="$(MSBuildThisFileDirectory)SampeRobotsCode\MatchListPage.cs" />
+    <None Include="$(MSBuildThisFileDirectory)SampeRobotsCode\RegPage.cs" />
+    <None Include="$(MSBuildThisFileDirectory)SampeRobotsCode\RobotsCell.cs" />
+    <None Include="$(MSBuildThisFileDirectory)SampeRobotsCode\WelcomePage.cs" />
+    <None Include="$(MSBuildThisFileDirectory)AdminOptionsPage.cs" />
   </ItemGroup>
 </Project>
